@@ -81,12 +81,30 @@ import { signalerEncre } from "./arrivee";
  * alors qu'un effet de bord d'un recentrage subi. Ici il EST ce qu'on regarde :
  * la planche quitte le centre de l'écran pour aller se ranger à sa place.
  *
- * ── L'aimantation ──────────────────────────────────────────────────────────
+ * ── L'aimantation, à DEUX pôles ────────────────────────────────────────────
  *
  * Le plein écran n'est pas une position parmi d'autres : c'est LE moment du
- * geste. Un arrêt du défilement dans la dernière portion de la montée est donc
- * porté jusqu'à l'arrivée exacte (`ENCRE.planche.attraction`), et seulement
- * vers le bas — remonter ne doit rien rencontrer.
+ * geste. Mais ce n'en est pas la fin, et un aimant qui n'en connaîtrait que
+ * lui lâcherait le visiteur au pire endroit — les trois quarts d'écran qui
+ * restent (maintien + pose) sont justement ceux où l'écran bouge le moins,
+ * donc ceux où la molette semble ne plus rien produire. Une planche arrêtée à
+ * moitié rétrécie n'est le repos de rien.
+ *
+ * Deux pôles, donc, et la VITESSE d'arrivée arbitre entre eux :
+ *
+ *   A  le plein écran (`ancre − plateau`), pour qui défile posément dans la
+ *      dernière portion de la montée (`ENCRE.planche.attraction`). Il s'y
+ *      arrête et il le regarde.
+ *
+ *   B  l'ancre, pour qui LANCE la molette (`ENCRE.planche.lancer`) : le geste
+ *      entier se joue d'une traite. Le maintien n'est pas sauté — le lisseur
+ *      le traverse à sa propre allure, la planche y tient bel et bien plein
+ *      cadre —, il n'est simplement plus un tunnel à franchir au poignet.
+ *
+ * Et où qu'on s'arrête ENTRE A et B, on est emmené en B : dans le geste, il
+ * n'y a pas d'endroit où se poser.
+ *
+ * Toujours vers le bas seulement — remonter ne doit rien rencontrer.
  *
  * Elle est écrite à la main, pas confiée au `snap` de ScrollTrigger : voir le
  * commentaire de `aimanter`, où sont consignées les deux configurations
@@ -275,21 +293,85 @@ export function usePlanchePosee<T extends HTMLElement = HTMLDivElement>() {
              lisseur, on la lui DEMANDE. `smoother.scrollTo(cible, true)` pose
              une nouvelle destination et laisse ScrollSmoother l'atteindre avec
              sa propre courbe ; le moindre coup de molette reprend la main
-             aussitôt, puisque c'est le même mécanisme qui porte les deux. */
+             aussitôt, puisque c'est le même mécanisme qui porte les deux.
+
+             DEUX PÔLES, et non un. La première version ne connaissait que le
+             plein écran : elle y amenait le visiteur, puis le lâchait pour les
+             trois quarts d'écran suivants — ceux du maintien et de la pose,
+             c'est-à-dire précisément ceux où l'écran bouge le moins. Un coup de
+             molette y retombant laissait la planche à moitié rétrécie, en
+             suspension, et le défilement paraissait bloqué : il ne l'était
+             pas, il ne produisait simplement plus rien à voir.
+
+             Le second pôle est l'ancre, et c'est la VITESSE d'arrivée qui
+             choisit — un lancer franc traverse tout d'une traite, un
+             défilement posé s'arrête au plein écran pour le regarder. */
           let minuteur = 0;
-          let precedent = 0;
+          /* Le défilement de la mise à jour précédente. `-1` et non `0` : sans
+             cette sentinelle, la toute première mise à jour compterait comme
+             « vers le bas », et un chargement en milieu de plage aimanterait
+             tout seul avant que le visiteur ait touché à quoi que ce soit. */
+          let precedent = -1;
+          /* Le plus fort élan VERS LE BAS depuis le dernier repos, en px/s.
+             `getVelocity()` ne sert à rien dans le compte à rebours : la page y
+             est par définition à l'arrêt, la vitesse y vaut zéro. C'est donc à
+             la mise à jour de retenir l'élan, et au compte à rebours de le
+             lire. Toute remontée l'efface : un aller-retour n'est pas un
+             lancer. */
+          let elan = 0;
+          /* La cible d'un trajet aimanté EN COURS, ou `null`. Tant qu'elle est
+             posée, le mouvement observé est le NÔTRE : on n'en tire ni élan
+             (ce serait mesurer notre propre bras) ni compte à rebours (il se
+             réarmerait sans fin sur son propre effet). C'est aussi ce qui rend
+             lisible l'état « garé au plein écran » : à l'arrivée l'élan vaut
+             zéro, donc rien ne pousse plus, et la planche attend. */
+          let enVol: number | null = null;
+          let ecartEnVol = Infinity;
           minuteurs.push(() => window.clearTimeout(minuteur));
+
+          /** Demander au lisseur d'emmener la page à `cible`, et se taire. */
+          const emmener = (cible: number) => {
+            enVol = cible;
+            ecartEnVol = Infinity;
+            elan = 0;
+            ScrollSmoother.get()?.scrollTo(cible, true);
+          };
 
           const aimanter = (s: number, versLeBas: boolean) => {
             window.clearTimeout(minuteur);
+            /* L'élan est lu MAINTENANT, pas dans le compte à rebours : dans
+               140 ms la page sera au repos et il aura disparu. */
+            const lance = elan / dvh() >= ENCRE.planche.lancer;
             /* Pas de délai fixe : `onUpdate` bat tant que le lisseur bouge, donc
                ce compte à rebours n'arrive au bout que lorsque la page est
                VRAIMENT au repos. C'est plus juste qu'un `delay` deviné. */
             minuteur = window.setTimeout(() => {
               if (!versLeBas) return;
-              const cible = ancre() - plateau();
-              if (s < cible - ENCRE.planche.attraction * dvh() || s >= cible) return;
-              ScrollSmoother.get()?.scrollTo(cible, true);
+
+              const J = ENCRE.planche.jeuAimant;
+              const pleinEcran = ancre() - plateau();
+
+              /* Passé l'ancre, le geste est fini : la transformation est
+                 l'identité, et plus rien ne doit l'en rappeler. */
+              if (s >= ancre() - J) return;
+
+              /* Entre le plein écran et l'ancre, on est DANS le geste. Une
+                 planche arrêtée à moitié rétrécie n'est le repos de rien : on
+                 termine, quelle qu'ait été la vitesse d'arrivée.
+
+                 Sauf si l'élan est nul — c'est alors qu'on vient d'être garé
+                 là par l'aimant lui-même, et une gare qui repart aussitôt n'est
+                 pas une gare. Le moindre cran de molette relance la pose. */
+              if (s >= pleinEcran - J) {
+                if (elan > 0) emmener(ancre());
+                return;
+              }
+
+              /* La dernière portion de la montée. C'est ici, et ici seulement,
+                 que la vitesse arbitre : un coup franc est porté d'une traite
+                 jusqu'à l'ancre, un défilement posé s'arrête au plein écran. */
+              if (s < pleinEcran - ENCRE.planche.attraction * dvh()) return;
+              emmener(lance ? ancre() : pleinEcran);
             }, 140);
           };
 
@@ -321,8 +403,35 @@ export function usePlanchePosee<T extends HTMLElement = HTMLDivElement>() {
             onUpdate: (self) => {
               const s = self.scroll();
               const t = poser(s);
-              aimanter(s, s > precedent);
+
+              /* Un trajet aimanté en cours se termine de deux façons : il
+                 arrive, ou le visiteur le reprend. L'écart à la cible dit
+                 laquelle — il décroît tant que c'est nous qui portons, il
+                 remonte dès qu'une main s'en mêle. */
+              if (enVol !== null) {
+                const ecart = Math.abs(s - enVol);
+                if (ecart <= ENCRE.planche.jeuAimant || ecart > ecartEnVol + 1) {
+                  enVol = null;
+                  ecartEnVol = Infinity;
+                } else {
+                  ecartEnVol = ecart;
+                }
+              }
+
+              if (enVol === null) {
+                /* Seule une remontée FRANCHE efface l'élan — pas une vélocité
+                   nulle : en fin de trajet elle passe par zéro et jitte au
+                   négatif, ce qui effacerait l'élan juste avant que le compte à
+                   rebours ne le lise. Le sens du défilement, lui, ne ment pas.
+                   Et seul ce qui dépasse le frisson y entre : en dessous, c'est
+                   le lisseur qui respire, pas une main. */
+                const v = self.getVelocity();
+                if (precedent >= 0 && s < precedent) elan = 0;
+                else if (v / dvh() >= ENCRE.planche.frisson) elan = Math.max(elan, v);
+                if (precedent >= 0) aimanter(s, s > precedent);
+              }
               precedent = s;
+
               if (signale || t < ENCRE.planche.posee) return;
               signale = true;
               signalerEncre(article);

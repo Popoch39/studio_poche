@@ -85,12 +85,46 @@ hauteur, pas l'agrandissement.
 Rien n'est rogné par nous : ce qui dépasse sort du viewport, et `.scene` (en
 `overflow-x: clip`) contient le débord latéral. Plus de `clip-path` du tout.
 
-## L'aimantation, écrite à la main
+## L'aimantation, écrite à la main, à deux pôles
 
 Le plein écran n'est pas une position parmi d'autres : c'est **le** moment du geste, et on ne
 veut pas qu'il se traverse à moitié. Quand le défilement s'**arrête** dans la dernière portion
 de la montée (`ENCRE.planche.attraction`, un tiers d'écran), il est porté jusqu'à l'arrivée
 exacte — et seulement vers le bas : remonter ne doit rien rencontrer.
+
+Mais le plein écran n'est pas la **fin** du geste, et un aimant qui n'aurait connu que lui
+lâchait le visiteur au pire endroit. Les trois quarts d'écran qui restent — maintien puis pose
+— sont justement ceux où l'écran bouge le moins : pendant le maintien, rien ne bouge du tout,
+par construction. Un coup de molette y retombant laissait la planche à moitié rétrécie, en
+suspension, et le défilement **paraissait bloqué**. Il ne l'était pas : il ne produisait
+simplement plus rien à voir.
+
+D'où un **second pôle**, l'ancre, et la **vitesse d'arrivée** pour arbitrer :
+
+| ce qu'on fait                                        | où l'on est déposé      |
+| ---------------------------------------------------- | ----------------------- |
+| lancer franc dans la zone d'attraction               | l'**ancre** (tout joué) |
+| défilement posé dans la zone d'attraction            | le **plein écran**      |
+| s'arrêter n'importe où entre le plein écran et l'ancre | l'**ancre**             |
+| être au-delà de l'ancre, ou remonter                 | rien                    |
+
+Le seuil du lancer, `ENCRE.planche.lancer`, est en **hauteurs d'écran par seconde** et non en
+pixels : le même coup de molette doit vouloir dire la même chose sur un portable et sur un
+vingt-sept pouces. L'élan est **retenu à la mise à jour**, jamais lu dans le compte à rebours
+— quand celui-ci arrive au bout, la page est par définition au repos et la vitesse y vaut
+zéro.
+
+Le maintien n'est pas sauté pour autant : le lisseur le traverse à sa propre allure, et la
+planche y tient bel et bien plein cadre. Il n'est simplement plus un tunnel à franchir au
+poignet. C'est pourquoi la correction porte sur l'**aimant** et non sur `maintien`, dont la
+valeur reste `0.3` — et `SOUFFLE_AVANT`, qui lui est couplé, n'a donc pas bougé.
+
+Un trajet aimanté est notre propre mouvement : tant qu'il dure, on n'en tire ni élan — ce
+serait mesurer notre propre bras — ni compte à rebours, qui se réarmerait sans fin sur son
+propre effet. C'est aussi ce qui rend lisible l'état « garé au plein écran » : à l'arrivée
+l'élan vaut zéro, donc rien ne pousse plus, et la planche attend le prochain cran de molette.
+Un trajet se termine de deux façons, et l'écart à la cible dit laquelle : il décroît tant que
+c'est nous qui portons, il remonte dès qu'une main s'en mêle.
 
 Le `snap` de ScrollTrigger a été essayé dans ses deux configurations — porté par le
 déclencheur du geste, puis par un déclencheur dédié à la seule zone — et il se bat avec

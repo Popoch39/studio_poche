@@ -118,6 +118,38 @@ export const ENCRE = {
      */
     attraction: 0.35,
     /**
+     * Le seuil du LANCER, en hauteurs d'écran par seconde. Au-dessus, le coup
+     * de molette est jugé franc, et il est porté d'une traite jusqu'à l'ancre :
+     * montée, maintien et pose se jouent comme un seul mouvement. En dessous,
+     * c'est une contemplation, et l'aimant s'arrête au plein écran pour qu'on
+     * l'y regarde.
+     *
+     * C'est le visiteur qui choisit, sans le savoir : il presse ou il regarde.
+     * Le geste ne se règle donc pas sur une vitesse moyenne, il obéit à la
+     * main.
+     *
+     * En hauteurs d'écran par seconde et non en pixels : le même coup de
+     * molette doit vouloir dire la même chose sur un portable et sur un
+     * vingt-sept pouces.
+     */
+    lancer: 1.6,
+    /**
+     * Le FRISSON, en hauteurs d'écran par seconde : en dessous, un mouvement
+     * n'est pas une intention. C'est le plancher qui sépare un cran de molette
+     * du fluage terminal de ScrollSmoother — quand le lisseur finit un trajet,
+     * il rampe encore quelques pixels par seconde, et sans ce plancher cette
+     * respiration compterait comme un ordre. La planche garée au plein écran
+     * repartirait aussitôt, et le pôle A n'existerait pas.
+     */
+    frisson: 0.15,
+    /**
+     * La tolérance de l'aimant, en pixels. ScrollSmoother n'atterrit pas au
+     * pixel exact ; sans cette marge, la garde « on est déjà arrivé » resterait
+     * fausse d'un cheveu et l'aimant se rejouerait sans fin sur son propre
+     * mouvement.
+     */
+    jeuAimant: 2,
+    /**
      * Le seuil où la planche est jugée posée, et où sa Légende reçoit le départ
      * — exprimé en part de la POSE accomplie, pas de la course totale : c'est la
      * seule grandeur que le hook mesure, et la seule qui garde le même sens

@@ -5,42 +5,41 @@ import { gsap, useGSAP, CONDITIONS, ENCRE } from "@/lib/motion/gsap";
 
 /**
  * Le curseur encre : une tache d'encre suit le pointeur avec une traîne douce.
- * Elle ACCOMPAGNE le curseur natif, elle ne le remplace pas — cacher le vrai
+ * Elle ACCOMPAGNE le curseur natif, elle ne le remplace jamais — cacher le vrai
  * curseur coûte plus en repères qu'il ne rapporte en style.
  *
- * Trois gestes, un seul objet :
+ * UN SEUL CORPS, jamais deux : le POINT noir, plein. Il s'élargit sur un lien,
+ * mais reste le même objet. Trois tentatives d'en faire autre chose ont été
+ * retirées — l'anneau de survol des Œuvres, la loupe de verre (WebGL) qui l'a
+ * remplacé, puis l'étiquette qui nommait le projet survolé. Toutes ajoutaient
+ * un second corps entre le point et la page. Voir docs/adr/0006.
  *
- * — Elle S'ÉTIRE en courant. Pas d'après une vélocité mesurée mais d'après son
+ * Trois gestes :
+ *
+ * — Il S'ÉTIRE en courant. Pas d'après une vélocité mesurée mais d'après son
  *   propre RETARD sur le pointeur : la traîne est déjà une vitesse intégrée et
  *   lissée. L'étirement monte tant que la tache court, se referme seul quand
- *   elle rejoint le pointeur — aucun timer, aucun lissage à écrire. Plus la
- *   traîne est molle, plus ça s'étire : c'est le comportement d'une goutte
- *   qu'on tire.
+ *   elle rejoint le pointeur — aucun timer, aucun lissage à écrire.
  *
- * — Elle SE DÉPOSE en s'arrêtant. À chaque immobilisation la silhouette se
+ * — Il SE DÉPOSE en s'arrêtant. À chaque immobilisation la silhouette se
  *   recompose, dérivée de la position d'arrêt — jamais du hasard, comme le
  *   `sens` de SurvolEncre. La rotation, elle, PERSISTE : chaque dépôt garde
  *   l'orientation du geste qui l'a amené.
  *
- * — Elle SE POSE sur ce qu'elle désigne. Sur un lien elle s'élargit, pleine ;
- *   sur une Œuvre elle s'OUVRE EN ANNEAU — on voit le dessin au travers,
- *   jamais un pâté d'encre posé dessus. Dans les deux cas l'étirement s'amortit
- *   fortement : l'étirement dit « je cours », le survol dit « j'y suis ».
+ * — Il SE POSE sur ce qu'il désigne : plus large sur un lien, et l'étirement
+ *   s'amortit fortement. L'étirement dit « je cours », le survol dit « j'y
+ *   suis ».
  *
  * DEUX COUCHES, un seul propriétaire par propriété (même règle que
  * useFremissementVelocite) : l'enveloppe porte la position et le grossissement
- * de survol, la goutte porte rotation, étirement et trait.
+ * de survol, la goutte porte rotation et étirement.
  *
  * Réservé aux pointeurs fins (`pointer: fine` : jamais sur tactile), au
  * mouvement accepté et au-dessus du seuil mobile. Née invisible : elle
  * n'apparaît qu'au premier mouvement du pointeur. FRÈRE du lisseur sous
  * <body>, hors du confinement de `.scene` et hors du contenu transformé.
  */
-const TAILLE = 16; // px
-/** Une ombre interne de cette portée remplit la boîte : un disque plein. */
-const TRAIT = TAILLE / 2;
-/** Le même trait, réduit : la tache s'ouvre en anneau. */
-const ANNEAU = 1.5;
+const TAILLE = 25; // px
 
 const TRAINE = 0.35; // s
 /**
@@ -89,27 +88,26 @@ export function CurseurEncre() {
           const poserX = gsap.quickSetter(tache, "scaleX");
           const poserY = gsap.quickSetter(tache, "scaleY");
 
-          // Le jeton résolu une fois : GSAP interpole des nombres dans une
-          // chaîne, pas un `var()` qu'il faudrait relire à chaque frame.
-          const encre =
-            getComputedStyle(document.documentElement)
-              .getPropertyValue("--color-encre")
-              .trim() || "#000";
-
           const pointeur = { x: 0, y: 0 };
           /** L'état partagé : `plafond` et `presse` sont relus par le ticker. */
-          const etat = { plafond: ETIREMENT_MAX, presse: 1, trait: TRAIT };
-
-          // Le trait passe par un proxy plutôt que par un tween de chaîne :
-          // l'interpolation reste numérique, et Chrome ne quantifie pas une
-          // ombre à l'entier de pixel comme il le ferait d'un `border-width`.
-          const ecrireOmbre = gsap.quickSetter(tache, "boxShadow");
-          const poserTrait = () =>
-            ecrireOmbre(`inset 0 0 0 ${etat.trait}px ${encre}`);
+          const etat = { plafond: ETIREMENT_MAX, presse: 1 };
 
           let visible = false;
           let actif = false;
           let bougeait = false;
+
+          /** Redevenir un simple point : la sortie de fenêtre n'amène aucune
+              nouvelle cible, elle n'a donc aucune autre branche pour régler
+              l'échelle et le plafond. */
+          const reposer = contextSafe(() => {
+            gsap.to(cadre, { scale: 1, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+            gsap.to(etat, {
+              plafond: ETIREMENT_MAX,
+              duration: 0.25,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          });
 
           const deposer = contextSafe(() => {
             gsap.to(tache, {
@@ -132,8 +130,7 @@ export function CurseurEncre() {
 
             if (ecart > REPOS) {
               bougeait = true;
-              const tire =
-                1 + (etat.plafond - 1) * Math.min(ecart / ECART_MAX, 1);
+              const tire = 1 + (etat.plafond - 1) * Math.min(ecart / ECART_MAX, 1);
               poserRotation((Math.atan2(dy, dx) * 180) / Math.PI);
               // Volume adouci (1/√) plutôt que strict (1/x) : la tache garde du
               // corps au lieu de finir en trait.
@@ -192,21 +189,25 @@ export function CurseurEncre() {
           const poser = contextSafe((e: Event) => {
             const t = e.target as Element | null;
             const lien = t?.closest?.("a, button, [data-curseur]");
-            const piece = lien ? null : t?.closest?.("[data-revelation]");
+
             gsap.to(cadre, {
-              scale: lien ? 2 : piece ? 1.6 : 1,
+              scale: lien ? 2 : 1,
               duration: 0.25,
               ease: "power2.out",
               overwrite: "auto",
             });
             gsap.to(etat, {
-              trait: piece ? ANNEAU : TRAIT,
-              plafond: lien || piece ? ETIREMENT_POSE : ETIREMENT_MAX,
+              plafond: lien ? ETIREMENT_POSE : ETIREMENT_MAX,
               duration: 0.25,
               ease: "power2.out",
               overwrite: "auto",
-              onUpdate: poserTrait,
             });
+          });
+
+          // La sortie de la fenêtre n'amène aucune nouvelle cible : sans elle,
+          // une tache quittant l'écran depuis un lien resterait figée grossie.
+          const quitter = contextSafe((e: PointerEvent) => {
+            if (e.relatedTarget === null) reposer();
           });
 
           const presser = contextSafe(() => {
@@ -230,6 +231,7 @@ export function CurseurEncre() {
 
           window.addEventListener("pointermove", suivre, { passive: true });
           window.addEventListener("pointerover", poser, true);
+          window.addEventListener("pointerout", quitter, { passive: true });
           window.addEventListener("pointerdown", presser, { passive: true });
           window.addEventListener("pointerup", relacher, { passive: true });
           window.addEventListener("pointercancel", relacher, { passive: true });
@@ -237,19 +239,18 @@ export function CurseurEncre() {
           return () => {
             window.removeEventListener("pointermove", suivre);
             window.removeEventListener("pointerover", poser, true);
+            window.removeEventListener("pointerout", quitter);
             window.removeEventListener("pointerdown", presser);
             window.removeEventListener("pointerup", relacher);
             window.removeEventListener("pointercancel", relacher);
             dormir();
             gsap.set(cadre, { autoAlpha: 0, scale: 1 });
-            etat.trait = TRAIT;
             gsap.set(tache, {
               rotation: 0,
               scaleX: 1,
               scaleY: 1,
               borderRadius: "50%",
             });
-            poserTrait();
             visible = false;
             bougeait = false;
           };
@@ -278,16 +279,16 @@ export function CurseurEncre() {
         visibility: "hidden",
       }}
     >
-      {/* Pas de `background` : une ombre interne de portée TAILLE/2 remplit la
-          boîte. Plein et anneau deviennent la même valeur, et le `border-radius`
-          découpe l'ombre à la silhouette. */}
+      {/* Le point : un disque PLEIN, toujours — l'ancien anneau de survol
+          était un troisième état qui brouillait le geste. Le `border-radius`
+          découpe le fond à la silhouette. */}
       <div
         ref={goutte}
         style={{
           width: "100%",
           height: "100%",
           borderRadius: "50%",
-          boxShadow: `inset 0 0 0 ${TRAIT}px var(--color-encre)`,
+          background: "var(--color-encre)",
         }}
       />
     </div>
