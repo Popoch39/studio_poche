@@ -82,6 +82,23 @@ function boiteProjet(projet: Projet): Boite {
  * inclut la Légende : celle-ci s'écrit, elle n'est pas mouillée, et la faire
  * entrer dans la course allongerait le geste d'un vide.
  *
+ * Un Projet SCÉNOGRAPHIÉ (`projet.planche`) rompt avec tout ça sur un point :
+ * ses Œuvres sont enveloppées dans une PLANCHE — un calque posé sur la boîte de
+ * leur seule enveloppe — que `usePlanchePosee` agrandit puis pose au défilement.
+ * Il n'a alors AUCUN front d'encre : un Projet n'a jamais deux gestes
+ * (docs/adr/0005). Trois conséquences ici, toutes nécessaires :
+ *   — pas de `frontProjet`, pas de `masqueOeuvre`, pas de `data-encre-course` :
+ *     sans `masque`, `Oeuvre` n'émet pas `data-revelation` et le masque de
+ *     globals.css ne s'applique pas ;
+ *   — pas de `data-speed` : la géométrie de la pose suppose que le centre de la
+ *     planche suit le défilement à 1:1, or un plan de profondeur le ferait
+ *     avancer à 0,92× et fausserait tout le calage ;
+ *   — la translation reste exacte au pixel : la planche est posée à
+ *     `encre − boite` et ses Œuvres à `o − encre`, dont la somme redonne
+ *     `o − boite`. Même arithmétique qu'ADR 0003, un niveau de plus.
+ *
+ * La Légende reste HORS de la planche : elle ne se pose pas, elle s'écrit.
+ *
  * `priorite` doit être vrai pour les tout premiers projets visibles sans
  * défilement : leurs images sont alors chargées sans attendre, ce qui évite un
  * premier écran vide.
@@ -90,40 +107,75 @@ export function BlocProjet({
   projet,
   indice,
   priorite = false,
+  decalage = 0,
 }: {
   projet: Projet;
   /** Position du Projet dans le Collage : décide de son plan de profondeur. */
   indice: number;
   priorite?: boolean;
+  /**
+   * Décalage vertical en px de maquette, cumulé par les souffles des planches
+   * situées au-dessus. Voir `decalagesPlanches` dans CollageDesktop : seule
+   * l'ordonnée de l'article bouge, ses enfants restent dans son référentiel.
+   */
+  decalage?: number;
 }) {
   const boite = boiteProjet(projet);
   const encre = enveloppe(projet.oeuvres.map(rectOeuvre));
   const sens = sensEncre(encre.x, encre.largeur);
   const legende = projet.legende;
   const banderole = BANDEROLES.find((b) => b.slug === projet.slug);
+  const scenographie = projet.planche === true;
+
+  const oeuvres = projet.oeuvres.map((o, i) => (
+    // Un Projet peut recadrer plusieurs fois la MÊME image — même `fichier`,
+    // découpes différentes : l'indice distingue les clés.
+    <Oeuvre
+      key={`${o.fichier}#${i}`}
+      // Dans une planche, les Œuvres sont translatées dans le référentiel de
+      // la PLANCHE, elle-même posée dans celui de l'article.
+      oeuvre={
+        scenographie
+          ? { ...o, x: o.x - encre.x, y: o.y - encre.y }
+          : { ...o, x: o.x - boite.x, y: o.y - boite.y }
+      }
+      masque={scenographie ? undefined : masqueOeuvre(o.x - encre.x, o.y - encre.y, encre, sens)}
+      priorite={priorite}
+      survolPropre={banderole?.ancre === i}
+      pleinCadre={scenographie}
+    />
+  ));
+
   return (
     <article
       className="maquette-pose"
-      style={{ ...pose(boite.x, boite.y, boite.largeur, boite.hauteur), ...frontProjet(sens) }}
+      style={{
+        ...pose(boite.x, boite.y + decalage, boite.largeur, boite.hauteur),
+        ...(scenographie ? {} : frontProjet(sens)),
+      }}
       aria-label={projet.titre}
       data-slug={projet.slug}
-      data-speed={PROFONDEURS[indice % 3] ?? undefined}
+      // Un Projet scénographié est sur le plan neutre : la pose et ScrollSmoother
+      // ne peuvent pas se partager le déplacement de la même boîte.
+      data-speed={scenographie ? undefined : (PROFONDEURS[indice % 3] ?? undefined)}
       data-position-proposee={projet.positionProposee ? "" : undefined}
       // La course du front en px de maquette : useRevelationEncre en déduit la
       // durée. Une mesure du DOM ne la donnerait pas — elle serait à l'échelle.
-      data-encre-course={Math.round(courseEncre(encre.largeur, encre.hauteur))}
+      data-encre-course={
+        scenographie ? undefined : Math.round(courseEncre(encre.largeur, encre.hauteur))
+      }
     >
-      {projet.oeuvres.map((o, i) => (
-        // Un Projet peut recadrer plusieurs fois la MÊME planche — même
-        // `fichier`, découpes différentes : l'indice distingue les clés.
-        <Oeuvre
-          key={`${o.fichier}#${i}`}
-          oeuvre={{ ...o, x: o.x - boite.x, y: o.y - boite.y }}
-          masque={masqueOeuvre(o.x - encre.x, o.y - encre.y, encre, sens)}
-          priorite={priorite}
-          survolPropre={banderole?.ancre === i}
-        />
-      ))}
+      {scenographie ? (
+        <div
+          className="maquette-pose planche"
+          data-planche=""
+          style={pose(encre.x - boite.x, encre.y - boite.y, encre.largeur, encre.hauteur)}
+        >
+          {oeuvres}
+        </div>
+      ) : (
+        oeuvres
+      )}
       {/* Après les Œuvres — qu'elle recouvre en se déroulant — mais AVANT la
           Légende, qui doit rester lisible par-dessus : déroulée, la banderole
           descend d'une douzaine de pixels sous le bas des Œuvres et tronquait

@@ -31,6 +31,12 @@ const norm = (s) => s.normalize("NFC");
 const CHROME = new Set(["présentation 2"].map(norm));
 
 /**
+ * `planche: true` désigne un Projet SCÉNOGRAPHIÉ : sa planche se pose au
+ * défilement (voir docs/adr/0005) au lieu d'être révélée par le front d'encre.
+ * Choix éditorial, donc ici et pas dans une dérivation — mais contraint par la
+ * résolution : une planche est agrandie jusqu'à la largeur de l'écran, elle
+ * demande donc une source assez grande. Voir content/planches.json.
+ *
  * Répartition des légendes, décidée à la main.
  *
  * `contexte` reçoit la chaîne verbatim quand la légende ne se décompose pas en
@@ -40,7 +46,7 @@ const CHROME = new Set(["présentation 2"].map(norm));
 const CURATION = {
   "Group 30":       { slug: "veja-x-milk", contexte: true },
   "Group 31":       { slug: "logo-anne-maraichere", contexte: true },
-  "Group 29":       { slug: "toits-de-paris-2026", technique: true },
+  "Group 29":       { slug: "toits-de-paris-2026", technique: true, planche: true },
   "Group 16":       { slug: "flyer-sncf-reseau", decoupe: ["agence", "technique"] },
   "secours pop":    { slug: "secours-populaire", contexte: true },
   "huttopia":       { slug: "tiny-house-huttopia", contexte: true },
@@ -48,14 +54,14 @@ const CURATION = {
   "Group 21":       { slug: "pic-epeiche" },
   "Group 2":        { slug: "collages-ambiances", agence: true },
   "Group 11":       { slug: "morangis-canal-architecture", contexte: true },
-  "Group 34":       { slug: "fresque-ambassade-suisse", commanditaire: true },
+  "Group 34":       { slug: "fresque-ambassade-suisse", commanditaire: true, planche: true },
   "Group 8":        { slug: "vol-d-une-sterne", technique: true },
   "bretagne":       { slug: "plage-bretonne", technique: true },
   "Group 35":       { slug: "panneau-orgue-arbois", technique: true },
   "Group 36":       { slug: "axonometrie-urban-water", agence: true },
   "Group 19":       { slug: "etiquettes-savon-chevrerie", commanditaire: true },
   "Group 37":       { slug: "paysages-fenetre-du-train" },
-  "camargue":       { slug: "oiseaux-de-camargue", technique: true },
+  "camargue":       { slug: "oiseaux-de-camargue", technique: true, planche: true },
   "paysage":        { slug: "paysages-acrylique", technique: true },
   // Sans légende dans la maquette : à compléter par Marie.
   "IMG_5876 1":     { slug: "img-5876", titre: "Sans titre" },
@@ -161,6 +167,7 @@ for (const brut of extrait.projets) {
       : null,
     ...(brut.legendeIncomplete ? { legendeIncomplete: true } : {}),
     ...(repos ? { positionProposee: true } : {}),
+    ...(regle.planche ? { planche: true } : {}),
   };
 
   // Garde-fou : la légende recomposée doit être identique à l'originale.
@@ -210,6 +217,23 @@ export const PROJETS: Projet[] = `;
 await writeFile(
   join(racine, "content/projets.ts"),
   entete + JSON.stringify(projets, null, 2) + ";\n",
+);
+
+// ── content/planches.json ───────────────────────────────────────────────────
+/* Les noms de fichier des Œuvres scénographiées, pour scripts/optimiser-assets.
+ *
+ * Pourquoi un JSON à part et non une lecture de content/projets.ts :
+ * l'optimiseur est un module `.mjs`, il ne peut pas importer du TypeScript. Et
+ * pourquoi il en a besoin : une Œuvre scénographiée est agrandie jusqu'à la
+ * largeur de l'écran, elle réclame donc une variante que l'échelle ordinaire
+ * des paliers ne produit pas (voir ECHELONS dans l'optimiseur). */
+const fichiersPlanches = projets
+  .filter((p) => p.planche)
+  .flatMap((p) => p.oeuvres.map((o) => o.fichier));
+
+await writeFile(
+  join(racine, "content/planches.json"),
+  JSON.stringify(fichiersPlanches, null, 2) + "\n",
 );
 
 // ── content/chrome.ts ───────────────────────────────────────────────────────
@@ -269,6 +293,7 @@ const nVecPrets = Object.values(ecrans).reduce((n, e) => n + e.vecteurs.filter((
 console.log(`content/chrome.ts écrit — ${nImg} images, ${nVec} groupes vectoriels (${nVecPrets} avec SVG)`);
 
 console.log(`content/projets.ts écrit — ${projets.length} projets, ${projets.reduce((n, p) => n + p.oeuvres.length, 0)} œuvres`);
+console.log(`content/planches.json écrit — ${fichiersPlanches.length} œuvres scénographiées`);
 console.log(`  ${projets.filter((p) => p.legendeIncomplete).length} sans légende, ${projets.filter((p) => p.positionProposee).length} à position proposée`);
 console.log(`  légendes recomposées à l'identique : vérifié pour les ${projets.length}`);
 for (const a of avertissements) console.warn("  ! " + a);

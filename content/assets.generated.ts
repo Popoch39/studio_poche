@@ -78,7 +78,8 @@ export const ASSETS = {
           "octets": 245110,
           "fichier": "/img/banderoles/anne-maraichere-2560.webp"
         }
-      ]
+      ],
+      "reutilise": true
     }
   },
   "lettrage": {
@@ -1016,9 +1017,20 @@ export const ASSETS = {
           "largeur": 1280,
           "octets": 212252,
           "fichier": "/img/oeuvres/camargue-1-oiseau-camargue-1-1280.webp"
+        },
+        {
+          "format": "avif",
+          "largeur": 1800,
+          "octets": 115135,
+          "fichier": "/img/oeuvres/camargue-1-oiseau-camargue-1-1800.avif"
+        },
+        {
+          "format": "webp",
+          "largeur": 1800,
+          "octets": 340516,
+          "fichier": "/img/oeuvres/camargue-1-oiseau-camargue-1-1800.webp"
         }
-      ],
-      "reutilise": true
+      ]
     },
     "contact-a-propos-1": {
       "largeur": 1920,
@@ -2788,9 +2800,20 @@ export const ASSETS = {
           "largeur": 1920,
           "octets": 403418,
           "fichier": "/img/oeuvres/group-34-1-ambassade5-1-1920.webp"
+        },
+        {
+          "format": "avif",
+          "largeur": 2048,
+          "octets": 246481,
+          "fichier": "/img/oeuvres/group-34-1-ambassade5-1-2048.avif"
+        },
+        {
+          "format": "webp",
+          "largeur": 2048,
+          "octets": 434078,
+          "fichier": "/img/oeuvres/group-34-1-ambassade5-1-2048.webp"
         }
-      ],
-      "reutilise": true
+      ]
     },
     "group-34-2-ambassade4-1": {
       "largeur": 2048,
@@ -2856,9 +2879,20 @@ export const ASSETS = {
           "largeur": 1920,
           "octets": 127012,
           "fichier": "/img/oeuvres/group-34-2-ambassade4-1-1920.webp"
+        },
+        {
+          "format": "avif",
+          "largeur": 2048,
+          "octets": 93421,
+          "fichier": "/img/oeuvres/group-34-2-ambassade4-1-2048.avif"
+        },
+        {
+          "format": "webp",
+          "largeur": 2048,
+          "octets": 134666,
+          "fichier": "/img/oeuvres/group-34-2-ambassade4-1-2048.webp"
         }
-      ],
-      "reutilise": true
+      ]
     },
     "group-34-3-ambassade2-1": {
       "largeur": 1324,
@@ -2912,9 +2946,20 @@ export const ASSETS = {
           "largeur": 1280,
           "octets": 66218,
           "fichier": "/img/oeuvres/group-34-3-ambassade2-1-1280.webp"
+        },
+        {
+          "format": "avif",
+          "largeur": 1324,
+          "octets": 50940,
+          "fichier": "/img/oeuvres/group-34-3-ambassade2-1-1324.avif"
+        },
+        {
+          "format": "webp",
+          "largeur": 1324,
+          "octets": 70794,
+          "fichier": "/img/oeuvres/group-34-3-ambassade2-1-1324.webp"
         }
-      ],
-      "reutilise": true
+      ]
     },
     "group-35-1-photo3": {
       "largeur": 2048,

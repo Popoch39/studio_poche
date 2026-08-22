@@ -79,6 +79,18 @@ body {
   line-height: calc(var(--lh, 32) * var(--u));
 }
 
+/* Une PLANCHE : l'enveloppe des Œuvres d'un Projet scénographié, que
+   usePlanchePosee agrandit puis pose au défilement (docs/adr/0005).
+
+   Le fond de papier n'est pas un ornement, c'est le mécanisme. Agrandie, la
+   planche recouvre ses voisins — et `oiseaux-de-camargue` est un détourage à
+   canal alpha : sans fond, le Collage se verrait à travers les oiseaux. Posé en
+   permanence et hors media query, parce qu'au repos la planche ne recouvre aucun
+   voisin : ce fond y est invisible, la page EST déjà ce papier. */
+.planche {
+  background: var(--color-papier);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -154,6 +166,15 @@ body {
       calc((var(--m0) + var(--deroule) * (var(--m1) - var(--m0))) * var(--u))
         calc(var(--my) * var(--u));
     mask-composite: add;
+  }
+
+  /* Trois planches portent un `transform` en PERMANENCE — le scrub vit dans les
+     deux sens, la pose peut rejouer à tout moment — donc on réserve leurs
+     calques une fois pour toutes. Rien à voir avec le `will-change:
+     mask-position` que useRevelationEncre pose le temps du geste seulement : là
+     il s'agissait de 58 Œuvres, ici de trois éléments. */
+  .planche {
+    will-change: transform;
   }
 
   /* `visibility` et non `opacity` : l'écriture (SplitText) rendra chaque

@@ -85,6 +85,16 @@ export type Projet = {
    */
   legendeIncomplete?: true;
   /**
+   * Projet SCÉNOGRAPHIÉ : sa planche — l'enveloppe de ses Œuvres — entre grande
+   * et se pose à sa boîte de maquette au défilement, au lieu d'être révélée par
+   * le front d'encre. Un Projet n'a jamais les deux gestes (docs/adr/0005).
+   *
+   * Décidé dans la table CURATION de scripts/generer-projets.mjs, et contraint
+   * par la résolution des sources : une planche est agrandie jusqu'à la largeur
+   * de l'écran.
+   */
+  planche?: true;
+  /**
    * Projet posé hors du cadre PORTEFOLIO dans Figma (Les Tables, Plateau de
    * Saclay, Les toits de Paris 2024, Affiche soirée italienne) : sa position
    * d'origine est inutilisable, celle du manifeste est une proposition à valider.

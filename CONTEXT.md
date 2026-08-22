@@ -36,7 +36,8 @@ _Avoid_: médium, support, catégorie, tag
 
 **Collage** :
 La disposition libre des Projets, en positions absolues dans un référentiel de 1728px de
-large. C'est une propriété du Projet **dans la vue desktop** uniquement : la vue mobile
+large. Ses ordonnées suivent la maquette au pixel, à une exception près : deux respirations de
+papier vide encadrent chaque **Planche** et décalent tout ce qui suit (voir docs/adr/0005). C'est une propriété du Projet **dans la vue desktop** uniquement : la vue mobile
 l'ignore entièrement.
 _Avoid_: grille, layout, canvas, mosaïque
 
@@ -66,6 +67,14 @@ moment-là : au repos — et sous `prefers-reduced-motion`, au tactile, sous 128
 rendu est exactement la maquette. Une seule aujourd'hui : celle de
 « logo-anne-maraichere ».
 _Avoid_: bannière, bandeau, cover
+
+**Planche** :
+L'enveloppe des Œuvres d'un Projet **scénographié** — trois aujourd'hui. Elle entre grande
+au défilement, prend l'écran entier, et le défilement s'arrête jusqu'à ce qu'elle soit
+**arrivée à son ancre** : sa boîte de maquette. Un Projet scénographié n'a alors pas de front
+d'encre — la pose EST sa révélation (voir docs/adr/0005). Sa Légende n'entre jamais dans la
+Planche : elle ne se pose pas, elle s'écrit.
+_Avoid_: hero, plein écran, zoom, slide
 
 **Page d'attente** :
 L'écran d'entrée du site : l'illustration animée de Marie, sans navigation, qui cède la
@@ -110,6 +119,15 @@ Collage (voir docs/adr/0004) ; ses dimensions sont DÉDUITES du plus grand Proje
 `assets:rampe` clôt la chaîne `assets`. Cette image est faite pour être **remplacée par un
 lavis scanné de Marie** : même chemin, mêmes dimensions, mêmes bornes de bande, aucun code à
 toucher.
+
+`content/planches.json` est le seul fichier généré qui n'existe que pour un autre script :
+`generer-projets.mjs` y écrit les noms de fichier des Œuvres **scénographiées**, et
+`optimiser-assets.mjs` les lit pour leur ajouter un palier de variante à la largeur exacte de
+leur source. Sans ce détour, une planche agrandie jusqu'à la largeur de l'écran serait servie
+dans la variante calculée pour sa taille de REPOS, et arriverait molle à l'instant précis où
+on la regarde le plus. Le détour existe parce qu'un module `.mjs` ne peut pas importer du
+TypeScript ; le choix des planches, lui, est éditorial et vit dans la table `CURATION` du
+générateur, comme les slugs.
 
 Le composant `Entete` est l'autre exception, celle-là provisoire : ses coordonnées et recadrages y sont
 encore écrits en dur (relevés avant que le pipeline n'existe, et vérifiés identiques aux

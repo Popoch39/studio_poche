@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP, ENCRE, CONDITIONS } from "./gsap";
+import { gsap, useGSAP, ScrollTrigger, ENCRE, CONDITIONS } from "./gsap";
 import { attendreDecouverte } from "./voile";
 import { enregistrerArrivee, haterArrivee, reinitialiserArrivee } from "./arrivee";
 
@@ -53,7 +53,18 @@ export function useEntreePortfolio<T extends HTMLElement = HTMLDivElement>() {
           tl.to(feuille, { scale: 1, duration: ENCRE.duree.calage, ease: ENCRE.ease })
             // Le repos est exactement la maquette : pas de `transform: scale(1)`
             // résiduel, qui laisserait un contexte d'empilement derrière lui.
-            .call(() => gsap.set(feuille, { clearProps: "transform,transformOrigin" }));
+            .call(() => {
+              gsap.set(feuille, { clearProps: "transform,transformOrigin" });
+              /* ET ON REMESURE TOUT. Le recul est posé dans l'effet de layout,
+                 donc AVANT la première peinture — or c'est là que ScrollTrigger
+                 calcule ses `start` / `end`, en prenant le rect de chaque
+                 déclencheur. Un rect traverse le `scale(1.04)` : un article à
+                 2800 px du haut de la feuille est mesuré 4 % trop loin, soit
+                 112 px, et son geste se déclenche d'autant trop tôt pour le
+                 reste de la visite. Personne n'a encore défilé quand ce calage
+                 se termine : la remesure ne coûte rien et ne se voit pas. */
+              ScrollTrigger.refresh();
+            });
           enregistrerArrivee(tl);
         });
 

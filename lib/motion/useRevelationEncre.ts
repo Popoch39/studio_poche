@@ -55,6 +55,14 @@ export function useRevelationEncre<T extends HTMLElement = HTMLDivElement>({
 
       mm.add(`${CONDITIONS.mouvement} and ${CONDITIONS.collage}`, () => {
         for (const bloc of blocs) {
+          /* Un Projet SCÉNOGRAPHIÉ n'a pas de front : sa planche se pose, et la
+             pose EST sa révélation (docs/adr/0005). Le filtre est nécessaire, pas
+             cosmétique : sans lui le hook y trouverait zéro Œuvre à mouiller,
+             appellerait `signalerEncre` dès `top 85%`, et la Légende s'écrirait
+             avant que la planche ne soit posée. Un signal, un propriétaire —
+             c'est usePlanchePosee qui le donne. */
+          if (bloc.querySelector("[data-planche]")) continue;
+
           const pieces = gsap.utils.toArray<HTMLElement>("[data-revelation]", bloc);
           // Sans Œuvre à mouiller, on libère quand même la Légende : personne
           // ne doit attendre un front qui ne partira jamais.

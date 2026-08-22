@@ -1,6 +1,6 @@
 import type { Oeuvre as OeuvreModele } from "@/content/types";
 import { asset as lireAsset, srcset } from "@/lib/assets";
-import { pose, tailles } from "@/lib/echelle";
+import { pose, tailles, taillesPlanche } from "@/lib/echelle";
 
 /**
  * Une Œuvre posée dans le Collage.
@@ -16,6 +16,7 @@ export function Oeuvre({
   priorite = false,
   masque,
   survolPropre = false,
+  pleinCadre = false,
 }: {
   oeuvre: OeuvreModele;
   categorie?: string;
@@ -31,6 +32,12 @@ export function Oeuvre({
    * lui cède la place — `soulever` désaxerait le raccord des cercles.
    */
   survolPropre?: boolean;
+  /**
+   * L'Œuvre appartient à une planche SCÉNOGRAPHIÉE : elle sera agrandie jusqu'à
+   * la largeur de l'écran, donc elle annonce cette largeur — pas celle de son
+   * repos. Voir `taillesPlanche` et docs/adr/0005.
+   */
+  pleinCadre?: boolean;
 }) {
   const asset = lireAsset(categorie, oeuvre.fichier);
   if (!asset) {
@@ -54,7 +61,7 @@ export function Oeuvre({
     oeuvre.ajustement === "recadre" && oeuvre.crop
       ? (oeuvre.largeur * oeuvre.crop.w) / 100
       : oeuvre.largeur;
-  const sizes = tailles(largeurRendue);
+  const sizes = pleinCadre ? taillesPlanche(largeurRendue) : tailles(largeurRendue);
 
   const image = (
     <picture>

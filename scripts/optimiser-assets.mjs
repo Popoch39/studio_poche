@@ -12,7 +12,7 @@
  *   node scripts/optimiser-assets.mjs
  */
 import sharp from "sharp";
-import { readdir, mkdir, writeFile, stat, copyFile, rm } from "node:fs/promises";
+import { readdir, mkdir, readFile, writeFile, stat, copyFile, rm } from "node:fs/promises";
 import { join, parse, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -25,6 +25,14 @@ const SORTIE = join(racine, "public/img");
 /** Échelons de largeur. Aucun échelon ne dépasse la largeur de la source :
  *  agrandir une image ne fait qu'alourdir le fichier sans rien gagner. */
 const ECHELONS = [420, 640, 960, 1280, 1920, 2560];
+
+/** Les Œuvres SCÉNOGRAPHIÉES — content/planches.json, écrit par
+ *  generer-projets.mjs. Leur planche est agrandie jusqu'à la largeur de
+ *  l'écran (docs/adr/0005), donc les paliers ordinaires, calés sur la taille de
+ *  REPOS, ne suffisent pas. */
+const PLANCHES = new Set(
+  JSON.parse(await readFile(join(racine, "content/planches.json"), "utf8")),
+);
 
 /** effort 4 (et non le défaut 4/9) : compromis retenu parce qu'un scan A4 en
  *  AVIF à effort 9 prend plusieurs minutes pour ~5 % de gain. */
@@ -89,6 +97,15 @@ async function traiter(categorie, fichier) {
   const largeurs = ECHELONS.filter((l) => l <= largeur);
   if (largeurs.length === 0) largeurs.push(largeur);
   else if (largeurs.at(-1) !== largeur && largeur < ECHELONS[0]) largeurs.push(largeur);
+
+  /* Un palier de plus pour une Œuvre scénographiée : la largeur EXACTE de sa
+     source. Sans lui, `camargue-1-oiseau-camargue-1` (source 1800) plafonne à
+     1280 et arrive agrandi de 35 % à l'instant du plein cadre. Inutile au-delà
+     du dernier échelon — aucun écran ne demande plus, et un 4096 pèserait pour
+     rien. */
+  if (PLANCHES.has(name) && largeur < ECHELONS.at(-1) && largeurs.at(-1) !== largeur) {
+    largeurs.push(largeur);
+  }
 
   /* Ne pas réencoder ce qui existe déjà : un scan A4 en AVIF coûte plusieurs
      secondes, et régénérer 69 sources pour 16 nouvelles est du gaspillage pur.

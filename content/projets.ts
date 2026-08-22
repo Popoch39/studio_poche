@@ -156,7 +156,8 @@ export const PROJETS: Projet[] = [
       "largeur": 721.98,
       "fs": 20,
       "lh": 32
-    }
+    },
+    "planche": true
   },
   {
     "slug": "flyer-sncf-reseau",
@@ -483,7 +484,8 @@ export const PROJETS: Projet[] = [
       "largeur": 1115,
       "fs": 20,
       "lh": 32
-    }
+    },
+    "planche": true
   },
   {
     "slug": "vol-d-une-sterne",
@@ -706,7 +708,8 @@ export const PROJETS: Projet[] = [
       "largeur": 1048,
       "fs": 20,
       "lh": 32
-    }
+    },
+    "planche": true
   },
   {
     "slug": "paysages-acrylique",

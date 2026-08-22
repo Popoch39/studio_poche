@@ -138,7 +138,10 @@ for (const v of vues) {
 }
 
 /* ── 2. une Œuvre ordinaire : le soulèvement ─────────────────────────────── */
-const PIECE = "article[data-slug='toits-de-paris-2026']";
+/* PAS un Projet scénographié : ceux-là n'ont pas de `data-revelation` du tout —
+   leur planche se pose au défilement au lieu d'être révélée par un front
+   (docs/adr/0005). `toits-de-paris-2026`, qui servait ici, en est devenu un. */
+const PIECE = "article[data-slug='pic-epeiche']";
 await amener(PIECE, 300);
 const p = await page.$(`${PIECE} [data-revelation]`);
 const bp = await p.boundingBox();

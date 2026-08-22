@@ -16,7 +16,14 @@ import { SEUIL_MOBILE } from "@/lib/echelle";
  * `useGSAP` est enregistré comme plugin pour que GSAP connaisse le contexte
  * React et nettoie ses animations au démontage.
  */
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, DrawSVGPlugin, SplitText, CustomEase);
+gsap.registerPlugin(
+  useGSAP,
+  ScrollTrigger,
+  ScrollSmoother,
+  DrawSVGPlugin,
+  SplitText,
+  CustomEase,
+);
 
 /**
  * Le vocabulaire de mouvement du parti pris « l'encre qui se dépose ».
@@ -69,6 +76,55 @@ export const ENCRE = {
   hate: 3,
   /** L'échelle d'où la feuille se cale : on recule d'un rien, puis on pose. */
   recul: 1.04,
+  /**
+   * La POSE d'une planche scénographiée — la planche monte PLEIN CADRE, tient
+   * au centre de l'écran, puis va s'ancrer sur sa boîte de maquette
+   * (docs/adr/0005).
+   *
+   * Les longueurs sont en HAUTEURS D'ÉCRAN, pas en secondes : le geste est
+   * scrubé, il n'a pas de durée propre.
+   *
+   * La MONTÉE ne se règle pas : elle se déduit. La planche est mise à l'échelle
+   * pour faire exactement 100dvh de haut, donc l'amener de « entièrement sous la
+   * ligne de flottaison » à « centrée à l'écran » demande exactement UN écran de
+   * défilement. La régler serait la faire commencer visible.
+   */
+  planche: {
+    /**
+     * Le MAINTIEN, en hauteurs d'écran : la planche est plein cadre, épinglée
+     * au centre de l'écran, et TOUT est immobile. C'est le cadran de l'arrêt.
+     *
+     * ATTENTION, la course totale est COUPLÉE à `SOUFFLE_AVANT`
+     * (components/collage/CollageDesktop.tsx) : plus le geste est long, plus sa
+     * plage s'ouvre tôt, et plus il faut de papier vide au-dessus de la planche
+     * pour que la plage entière tienne dans le document.
+     */
+    maintien: 0.3,
+    /**
+     * La POSE, en hauteurs d'écran : la planche rétrécit et glisse jusqu'à son
+     * ancre. C'est le seul temps où quelque chose bouge autrement qu'à la
+     * vitesse de la page.
+     */
+    pose: 0.45,
+    /**
+     * La zone d'ATTRACTION du plein écran, en hauteurs d'écran : la portion
+     * finale de la montée où un arrêt du défilement est aimanté jusqu'à
+     * l'arrivée exacte. Le plein écran n'est pas une position parmi d'autres,
+     * c'est le moment du geste : on ne veut pas qu'il se traverse à moitié.
+     *
+     * La montée valant un écran, `0.35` veut dire « le dernier tiers ».
+     * L'aimantation ne joue que par le BAS : au-delà, c'est le défilement qui
+     * vient ancrer la planche, et rien ne doit le ramener en arrière.
+     */
+    attraction: 0.35,
+    /**
+     * Le seuil où la planche est jugée posée, et où sa Légende reçoit le départ
+     * — exprimé en part de la POSE accomplie, pas de la course totale : c'est la
+     * seule grandeur que le hook mesure, et la seule qui garde le même sens
+     * quelles que soient les bornes du déclencheur.
+     */
+    posee: 0.7,
+  },
 } as const;
 
 /**
