@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Originaux Figma : lourds (80 Mo pour 23 oeuvres) et régénérables via
+# scripts/extraire-figma.mjs. Seul public/img/ (les variantes servies) est versionné.
+/sources/
+
+# Captures de vérification visuelle, régénérables
+/.captures/
+# Référence locale du comparateur (cp -r .captures .captures-reference)
+/.captures-reference/

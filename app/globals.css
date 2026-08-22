@@ -1,26 +1,217 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Tokens du Studio Poche ─────────────────────────────────────────────────
+   Couleurs mesurées au pixel sur les exports Figma : 91 % des pixels du fond
+   sont exactement #FFFEF6, et l'encre est du noir pur. Il n'y a volontairement
+   PAS de mode sombre — l'identité du studio est une seule feuille de papier.
+   ------------------------------------------------------------------------- */
+@theme {
+  --color-papier: #fffef6;
+  --color-encre: #000000;
+
+  --font-texte: var(--police-texte), ui-monospace, "SFMono-Regular", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── L'unité d'échelle ──────────────────────────────────────────────────────
+   La maquette fait 1728px de large. `--u` vaut 1px de maquette : chaque
+   coordonnée s'écrit `calc(78 * var(--u))` et toute la scène grandit d'un bloc.
+
+   Voir docs/adr/0001 — ne PAS remplacer par `transform: scale()` : la
+   transformation fausse les mesures de ScrollTrigger, dont dépend toute la
+   couche d'animation.
+
+   `cqw` et non `vw` : `vw` inclut la largeur de la barre de défilement, ce qui
+   provoquerait un débordement horizontal permanent (sur une page de 16404px la
+   barre est toujours présente). Une requête de conteneur ne peut pas
+   s'interroger elle-même, d'où les deux niveaux .scene / .scene-contenu.
+
+   Plafond à 2200px : au-delà, la scène est centrée sur le papier.
+   ------------------------------------------------------------------------- */
+.scene {
+  container-type: inline-size;
+  /* Certaines Œuvres dépassent volontairement le bord du cadre (ILL_Poisson va
+     jusqu'à x=1786 pour un cadre de 1728). Un cadre Figma rogne son contenu :
+     on fait pareil.
+     `clip` et non `hidden` : `hidden` crée un conteneur de défilement, ce qui
+     casserait `position: sticky` et perturberait ScrollTrigger. `clip` rogne
+     sans rien créer. */
+  overflow-x: clip;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.scene-contenu {
+  --maquette: 1728;
+  --u: calc(min(100cqw, 2200px) / var(--maquette));
+
+  width: calc(var(--maquette) * var(--u));
+  margin-inline: auto;
+  position: relative;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+html,
+body {
+  background: var(--color-papier);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-encre);
+  font-family: var(--font-texte);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Le rognage est fait par .scene, pas ici : `overflow-x: hidden` sur body
+     n'empêche pas <html> de s'étendre, et le débordement subsiste. */
+}
+
+/* Un élément positionné dans le référentiel de la maquette.
+   Les quatre coordonnées arrivent du manifeste via des variables CSS. */
+.maquette-pose {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--l) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+/* Un bloc de texte aux métriques de la maquette (défaut : 20px/32px, la
+   valeur relevée sur les légendes de projet). */
+.maquette-texte {
+  font-size: calc(var(--fs, 20) * var(--u));
+  line-height: calc(var(--lh, 32) * var(--u));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── L'état d'avant la révélation, dès la PREMIÈRE peinture ─────────────────
+   Les Œuvres du Collage naissent masquées (le balayage d'encre les révélera)
+   et les Légendes naissent blanches (elles s'écriront). Cet état DOIT être en
+   CSS : posé par GSAP à l'hydratation, il arrivait APRÈS la peinture du HTML
+   serveur — les images flashaient, se cachaient, puis étaient balayées.
+
+   Le media query est le MIROIR de CONDITIONS (lib/motion/gsap.ts) : mouvement
+   accepté ET vue Collage (1280 = SEUIL_MOBILE, docs/adr/0001). En dehors,
+   l'état de repos s'affiche directement — aucun masque n'est même posé. Sans
+   JavaScript, rien ne révélerait : CollageDesktop pose le <noscript> qui
+   montre tout. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 1280px) {
+  /* Le masque vit sur le WRAPPER de l'Œuvre (qui porte data-revelation et la
+     vraie boîte), jamais sur <picture> : celui-ci est une boîte inline de
+     0×0 — son seul enfant est en position absolue — et un masque s'y
+     résoudrait contre rien, cachant l'Œuvre pour toujours.
+
+     Rien n'est écrit en dur ici. `--rampe`, `--rampe-l`, `--rampe-h` et
+     `--encre` sont HÉRITÉS de l'<article> du Projet ; `--m0`, `--m1`, `--my`
+     sont posés sur l'Œuvre. Les uns comme les autres sont dérivés au rendu par
+     BlocProjet (lib/encre.ts) — c'est ce qui permet à l'état masqué d'exister
+     dès la première peinture, sans attendre l'hydratation.
+
+     Le front est donc partagé : toutes les Œuvres d'une planche voient passer
+     la même bande, au même instant, à la même place. useRevelationEncre n'anime
+     que `--encre`, de 0 à 1, sur l'article. */
+  [data-revelation] {
+    -webkit-mask-image: var(--rampe);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: calc(var(--rampe-l) * var(--u)) calc(var(--rampe-h) * var(--u));
+    -webkit-mask-position: calc((var(--m0) + var(--encre) * (var(--m1) - var(--m0))) * var(--u))
+      calc(var(--my) * var(--u));
+    mask-image: var(--rampe);
+    mask-repeat: no-repeat;
+    mask-size: calc(var(--rampe-l) * var(--u)) calc(var(--rampe-h) * var(--u));
+    mask-position: calc((var(--m0) + var(--encre) * (var(--m1) - var(--m0))) * var(--u))
+      calc(var(--my) * var(--u));
+  }
+  /* La Banderole se dépose au MÊME front que les Œuvres — mais son rond ne
+     disparaît jamais. Deux couches de masque en UNION : le disque, fixe et
+     toujours opaque, et la bande déchirée qui traverse vers la droite. C'est
+     `mask-composite: add` qui les unit (valeur initiale, écrite ici parce
+     qu'elle EST le mécanisme).
+
+     `--deroule` et non `--encre` : la Banderole est enfant de l'<article> et
+     hériterait sa progression — elle se découvrirait au défilement, alors
+     qu'elle n'appartient qu'au survol. Voir useDeroulementBanderole et
+     components/oeuvre/Banderole.tsx, qui pose `--disque` et les bornes. */
+  [data-banderole] {
+    -webkit-mask-image: var(--disque), var(--rampe);
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    -webkit-mask-size: 100% 100%,
+      calc(var(--rampe-l) * var(--u)) calc(var(--rampe-h) * var(--u));
+    -webkit-mask-position: 0 0,
+      calc((var(--m0) + var(--deroule) * (var(--m1) - var(--m0))) * var(--u))
+        calc(var(--my) * var(--u));
+    -webkit-mask-composite: source-over;
+    mask-image: var(--disque), var(--rampe);
+    mask-repeat: no-repeat, no-repeat;
+    mask-size: 100% 100%, calc(var(--rampe-l) * var(--u)) calc(var(--rampe-h) * var(--u));
+    mask-position: 0 0,
+      calc((var(--m0) + var(--deroule) * (var(--m1) - var(--m0))) * var(--u))
+        calc(var(--my) * var(--u));
+    mask-composite: add;
+  }
+
+  /* `visibility` et non `opacity` : l'écriture (SplitText) rendra chaque
+     caractère visible un à un, ce qui surcharge un parent caché — et
+     useLegendesEcrites rend sa visibilité au conteneur dès l'hydratation pour
+     que l'aria-label du titre reste exposé. */
+  article[data-slug] .maquette-texte {
+    visibility: hidden;
+  }
+}
+
+/* Le Texte équivalent d'un Lettrage : lu par les lecteurs d'écran et indexé,
+   invisible à l'écran. Voir docs/adr/0002. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Champs de formulaire ───────────────────────────────────────────────────
+   La maquette ne dessine aucun champ : seulement les libellés et le contour
+   général. On reste donc dans son vocabulaire — un simple trait d'encre sous le
+   champ, rien qui ressemble à un contrôle de système d'exploitation. */
+.champ {
+  background: transparent;
+  border: 0;
+  border-bottom: calc(2 * var(--u)) solid var(--color-encre);
+  color: var(--color-encre);
+  font: inherit;
+  padding: 0 0 calc(4 * var(--u));
+  resize: none;
+}
+
+.champ:focus-visible {
+  outline: calc(2 * var(--u)) solid var(--color-encre);
+  outline-offset: calc(4 * var(--u));
+}
+
+.champ[aria-invalid="true"] {
+  border-bottom-style: dashed;
+}
+
+.bouton-encre {
+  background: transparent;
+  border: calc(2 * var(--u)) solid var(--color-encre);
+  border-radius: calc(28 * var(--u));
+  color: var(--color-encre);
+  cursor: pointer;
+  font: inherit;
+}
+
+.bouton-encre:disabled {
+  cursor: progress;
+  opacity: 0.5;
 }

@@ -1,0 +1,2054 @@
+{
+  "_lisezmoi": "BROUILLON généré par scripts/extraire-figma.mjs. Les slugs, textes alternatifs et la répartition commanditaire/agence/technique demandent un jugement : ils sont rédigés à la main dans content/projets.ts.",
+  "extraitLe": "2026-08-21",
+  "hauteurPortfolio": 16404,
+  "projets": [
+    {
+      "idFigma": "3323:7",
+      "nomFigma": "huttopia",
+      "titre": "Concevoir une Tiny House dans un milieu aride",
+      "annee": 2022,
+      "resteLegende": "Concours Huttopia, projet Finaliste : «L’oasis à soif»",
+      "legende": {
+        "x": 78,
+        "y": 4719,
+        "largeur": 778,
+        "hauteur": 214,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:35",
+          "nomFigma": "01_TINYH",
+          "x": 78,
+          "y": 4477,
+          "largeur": 384.87,
+          "hauteur": 229.13,
+          "imageRef": "df94412b125cd1dca1fbc9317629fa69869f3de0",
+          "ajustement": "couvrir",
+          "fichier": "huttopia-1-01-tinyh"
+        },
+        {
+          "idFigma": "3321:36",
+          "nomFigma": "01_TINYH2",
+          "x": 873,
+          "y": 4477,
+          "largeur": 385.76,
+          "hauteur": 229.13,
+          "imageRef": "109a37deb6ccf92e0f506f004dd4fa6f9f62c2d7",
+          "ajustement": "couvrir",
+          "fichier": "huttopia-2-01-tinyh2"
+        },
+        {
+          "idFigma": "3321:37",
+          "nomFigma": "01_TINYH3",
+          "x": 1271,
+          "y": 4477,
+          "largeur": 384.87,
+          "hauteur": 229.13,
+          "imageRef": "1e62ab4edec8b2ecb6ec4c9431318649b72dafda",
+          "ajustement": "couvrir",
+          "fichier": "huttopia-3-01-tinyh3"
+        },
+        {
+          "idFigma": "3321:38",
+          "nomFigma": "01_TINYH4",
+          "x": 475,
+          "y": 4477,
+          "largeur": 385.76,
+          "hauteur": 229.13,
+          "imageRef": "39ab4ad587226531dd4aa05f63e9fd2b042dc95c",
+          "ajustement": "couvrir",
+          "fichier": "huttopia-4-01-tinyh4"
+        }
+      ]
+    },
+    {
+      "idFigma": "3323:2",
+      "nomFigma": "Group 2",
+      "titre": "Collages d’ambiances réalisés à partir des illustrations à droite",
+      "annee": 2023,
+      "resteLegende": "Agence Réseaux Paysage et Urbanisme",
+      "legende": {
+        "x": 545,
+        "y": 6405.13,
+        "largeur": 1074,
+        "hauteur": 86,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:45",
+          "nomFigma": "05_COLLAGE 1",
+          "x": 1196,
+          "y": 5952,
+          "largeur": 433,
+          "hauteur": 452,
+          "imageRef": "6c8fdfbcdb0e9591365173efebab51f0f67c643e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": 0,
+            "t": -0.1,
+            "w": 100,
+            "h": 112.42
+          },
+          "fichier": "group-2-1-05-collage-1"
+        },
+        {
+          "idFigma": "3321:46",
+          "nomFigma": "05_COLLAGE2 1",
+          "x": 545,
+          "y": 5952,
+          "largeur": 644.51,
+          "hauteur": 453.13,
+          "imageRef": "feeb2cc004bc3c207415e7d0943acf5e45863ea3",
+          "ajustement": "couvrir",
+          "fichier": "group-2-2-05-collage2-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:3",
+      "nomFigma": "Group 8",
+      "titre": "Le vol d’une sterne",
+      "annee": 2024,
+      "resteLegende": "Vidéo animée",
+      "legende": {
+        "x": 98,
+        "y": 9149,
+        "largeur": 590,
+        "hauteur": 123,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:2",
+          "nomFigma": "sterne 1",
+          "x": 98,
+          "y": 8504,
+          "largeur": 645,
+          "hauteur": 645,
+          "imageRef": "19dee232b3fdc766d0ebdcb77d7b9be9c97aa1ed",
+          "radius": 35,
+          "ajustement": "couvrir",
+          "fichier": "group-8-1-sterne-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:14",
+      "nomFigma": "POISSON",
+      "titre": null,
+      "annee": null,
+      "resteLegende": null,
+      "legendeIncomplete": true,
+      "legende": null,
+      "oeuvres": [
+        {
+          "idFigma": "3346:9",
+          "nomFigma": "ILL_Poisson 1",
+          "x": 0,
+          "y": 14222,
+          "largeur": 621,
+          "hauteur": 129,
+          "imageRef": "05d8cd316dc62e2962601f99ce93a8727b71deaa",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.05,
+            "t": -223.26,
+            "w": 100.1,
+            "h": 339.53
+          },
+          "fichier": "poisson-1-ill-poisson-1"
+        },
+        {
+          "idFigma": "3346:10",
+          "nomFigma": "ILL_Poisson 2",
+          "x": 573,
+          "y": 14222,
+          "largeur": 621,
+          "hauteur": 140,
+          "imageRef": "05d8cd316dc62e2962601f99ce93a8727b71deaa",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.05,
+            "t": -105.71,
+            "w": 100.1,
+            "h": 312.86
+          },
+          "fichier": "poisson-1-ill-poisson-1"
+        },
+        {
+          "idFigma": "3346:11",
+          "nomFigma": "ILL_Poisson 2",
+          "x": 1165,
+          "y": 14220,
+          "largeur": 621,
+          "hauteur": 139,
+          "imageRef": "05d8cd316dc62e2962601f99ce93a8727b71deaa",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.05,
+            "t": 0,
+            "w": 100.1,
+            "h": 315.11
+          },
+          "fichier": "poisson-1-ill-poisson-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:25",
+      "nomFigma": "Group 11",
+      "titre": "Reconversion de l’ancien site B.P à Morangis (2 min 18)",
+      "annee": 2021,
+      "resteLegende": "Images extraite d’une vidéo animée pour Canal Architecture",
+      "legende": {
+        "x": 137,
+        "y": 6934,
+        "largeur": 985,
+        "hauteur": 74,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:21",
+          "nomFigma": "Capture d’écran 2024-04-19 à 15.29.39 1",
+          "x": 137,
+          "y": 6602,
+          "largeur": 367,
+          "hauteur": 332,
+          "imageRef": "022493011b0043bd8a87d1cd6e84e3597a96addf",
+          "ajustement": "couvrir",
+          "fichier": "group-11-1-capture-d-ecran-2024-04-19-a-15-29-39-1"
+        },
+        {
+          "idFigma": "3346:22",
+          "nomFigma": "Capture d’écran 2024-04-19 à 15.29.54 1",
+          "x": 504,
+          "y": 6602,
+          "largeur": 370,
+          "hauteur": 332,
+          "imageRef": "0805618095ffef07099bab023c23561e00561490",
+          "ajustement": "couvrir",
+          "fichier": "group-11-2-capture-d-ecran-2024-04-19-a-15-29-54-1"
+        },
+        {
+          "idFigma": "3346:23",
+          "nomFigma": "Capture d’écran 2024-04-19 à 15.31.10 1",
+          "x": 1246,
+          "y": 6601,
+          "largeur": 379,
+          "hauteur": 333,
+          "imageRef": "159b98e3419d310729eaabdf273d48bf6c1758a4",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.04,
+            "t": 0,
+            "w": 100.09,
+            "h": 108.14
+          },
+          "fichier": "group-11-3-capture-d-ecran-2024-04-19-a-15-31-10-1"
+        },
+        {
+          "idFigma": "3346:24",
+          "nomFigma": "Capture d’écran 2024-04-19 à 15.31.24 1",
+          "x": 874,
+          "y": 6601,
+          "largeur": 383,
+          "hauteur": 333,
+          "imageRef": "8d1f96a887ac8ca42bc50a2f00ece5cf04f963a8",
+          "ajustement": "recadre",
+          "crop": {
+            "l": 0,
+            "t": -0.1,
+            "w": 100,
+            "h": 110.46
+          },
+          "fichier": "group-11-4-capture-d-ecran-2024-04-19-a-15-31-24-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:39",
+      "nomFigma": "camargue",
+      "titre": "Les oiseaux de Camargues",
+      "annee": 2024,
+      "resteLegende": "Illustration numérique",
+      "legende": {
+        "x": 213,
+        "y": 13084,
+        "largeur": 1048,
+        "hauteur": 103,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:37",
+          "nomFigma": "oiseau camargue 1",
+          "x": 172,
+          "y": 12311,
+          "largeur": 1159,
+          "hauteur": 773,
+          "imageRef": "c62ae2362fdfcd914dbd01eadd5ddf8ee739e9f5",
+          "miroir": true,
+          "ajustement": "couvrir",
+          "fichier": "camargue-1-oiseau-camargue-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:50",
+      "nomFigma": "paysage",
+      "titre": "Paysages",
+      "annee": 2024,
+      "resteLegende": "Acrylique, craies grasses, crayons de couleurs",
+      "legende": {
+        "x": 806,
+        "y": 13999,
+        "largeur": 795,
+        "hauteur": 134,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:41",
+          "nomFigma": "BROCHE 1",
+          "x": 805.69,
+          "y": 13647.48,
+          "largeur": 253.45,
+          "hauteur": 351.52,
+          "imageRef": "244a15665c846ec47faeec41fd52c339aa494459",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -9.54,
+            "t": -6.48,
+            "w": 116.35,
+            "h": 118.66
+          },
+          "fichier": "paysage-1-broche-1"
+        },
+        {
+          "idFigma": "3346:42",
+          "nomFigma": "BROCHE3 1",
+          "x": 1075.72,
+          "y": 13648.17,
+          "largeur": 250,
+          "hauteur": 350.83,
+          "imageRef": "a5a1a4c044a003d7c1e120fa15e10ecc1d686658",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -9.94,
+            "t": -6.99,
+            "w": 117.96,
+            "h": 118.9
+          },
+          "fichier": "paysage-2-broche3-1"
+        },
+        {
+          "idFigma": "3346:44",
+          "nomFigma": "BROCHE16 1",
+          "x": 1346.44,
+          "y": 13647.48,
+          "largeur": 254.84,
+          "hauteur": 350.14,
+          "imageRef": "ca9cb6035b36a257ebe26db47780150181d59403",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -8.94,
+            "t": -6.71,
+            "w": 115.72,
+            "h": 119.13
+          },
+          "fichier": "paysage-3-broche16-1"
+        },
+        {
+          "idFigma": "3346:45",
+          "nomFigma": "étiquette 1",
+          "x": 1346.44,
+          "y": 13281.45,
+          "largeur": 252.07,
+          "hauteur": 350.83,
+          "imageRef": "1856807f13772ec8622a3d8b3a0e559c7c606ae7",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -9.32,
+            "t": -6.89,
+            "w": 116.99,
+            "h": 118.9
+          },
+          "fichier": "paysage-4-etiquette-1"
+        },
+        {
+          "idFigma": "3346:46",
+          "nomFigma": "étiquette3 1",
+          "x": 1075.72,
+          "y": 13278,
+          "largeur": 254.15,
+          "hauteur": 351.52,
+          "imageRef": "d9e762f5546d1eea7a2c25911375422370a2fb3b",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -8.97,
+            "t": -5.7,
+            "w": 116.03,
+            "h": 118.66
+          },
+          "fichier": "paysage-5-etiquette3-1"
+        },
+        {
+          "idFigma": "3346:47",
+          "nomFigma": "BROCHE5 2",
+          "x": 805,
+          "y": 13281.45,
+          "largeur": 254.15,
+          "hauteur": 348.07,
+          "imageRef": "7853c55ac4f5c78c93b2afbf649023cd79730ace",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -8.42,
+            "t": -7.34,
+            "w": 116.03,
+            "h": 119.84
+          },
+          "fichier": "paysage-6-broche5-2"
+        }
+      ]
+    },
+    {
+      "idFigma": "3383:3",
+      "nomFigma": "présentation 2",
+      "titre": null,
+      "annee": null,
+      "resteLegende": null,
+      "legendeIncomplete": true,
+      "legende": null,
+      "oeuvres": [
+        {
+          "idFigma": "3383:3",
+          "nomFigma": "présentation 2",
+          "x": 734,
+          "y": 183,
+          "largeur": 391,
+          "hauteur": 62,
+          "imageRef": "732e8c9fbb819d9cdf7332bac929acd083459f51",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -189.77,
+            "t": -892.71,
+            "w": 491.05,
+            "h": 1125
+          },
+          "fichier": "presentation-2-1-presentation-2"
+        }
+      ]
+    },
+    {
+      "idFigma": "3383:7",
+      "nomFigma": "Group 16",
+      "titre": "Flyer sur l’économie circulaire, SNCF Réseau",
+      "annee": 2025,
+      "resteLegende": "agence CREADS - Illustration et conception graphique",
+      "legende": {
+        "x": 387,
+        "y": 3268,
+        "largeur": 1076,
+        "hauteur": 87,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3364:2",
+          "nomFigma": "Mockup SNCF réseau 1",
+          "x": 387,
+          "y": 2747,
+          "largeur": 702,
+          "hauteur": 505,
+          "imageRef": "d35ac2cb94c81f4e76e707ebba04ca7fdd18af2c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -18.11,
+            "t": -20.04,
+            "w": 130.67,
+            "h": 136.22
+          },
+          "fichier": "group-16-1-mockup-sncf-reseau-1"
+        },
+        {
+          "idFigma": "3383:4",
+          "nomFigma": "illustration rail 1",
+          "x": 1106,
+          "y": 2747,
+          "largeur": 357,
+          "hauteur": 505,
+          "imageRef": "f0ca7dcb6723d5c310c9797adf0b0b841d458b11",
+          "ajustement": "couvrir",
+          "fichier": "group-16-2-illustration-rail-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3383:10",
+      "nomFigma": "Group 17",
+      "titre": "Affiche fictive pour une ride musicale à Paris",
+      "annee": 2024,
+      "resteLegende": "Illustrations acrylique et numérique",
+      "legende": {
+        "x": 86,
+        "y": 5778,
+        "largeur": 952,
+        "hauteur": 87,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3377:93",
+          "nomFigma": "mockup test affiche 1",
+          "x": 86,
+          "y": 4949,
+          "largeur": 952,
+          "hauteur": 813,
+          "imageRef": "35cde39f8852f8e8d8213a070a61ff71ea19065d",
+          "ajustement": "couvrir",
+          "fichier": "group-17-1-mockup-test-affiche-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3394:4",
+      "nomFigma": "Group 21",
+      "titre": "Pic épeiche",
+      "annee": 2024,
+      "resteLegende": null,
+      "legende": {
+        "x": 1175,
+        "y": 5508,
+        "largeur": 444,
+        "hauteur": 87,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:54",
+          "nomFigma": "pie 1",
+          "x": 1175,
+          "y": 5051,
+          "largeur": 444,
+          "hauteur": 445,
+          "imageRef": "b603739df15848d2d16ab33f531157666222d570",
+          "radius": 50,
+          "ajustement": "couvrir",
+          "fichier": "group-21-1-pie-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5331:13",
+      "nomFigma": "Group 35",
+      "titre": "Panneau pédagogique pour l’Association «Orgue et musiques en Arbois»",
+      "annee": 2024,
+      "resteLegende": "Illustration et conception graphique",
+      "legende": {
+        "x": 95,
+        "y": 10287,
+        "largeur": 1526,
+        "hauteur": 123,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3377:95",
+          "nomFigma": "photo3",
+          "x": 95,
+          "y": 9518,
+          "largeur": 554,
+          "hauteur": 369,
+          "imageRef": "29f819ccf8d774a4f9d130f8b7f8765204f7942d",
+          "ajustement": "couvrir",
+          "fichier": "group-35-1-photo3"
+        },
+        {
+          "idFigma": "3377:96",
+          "nomFigma": "photo4",
+          "x": 95,
+          "y": 9911,
+          "largeur": 554,
+          "hauteur": 369,
+          "imageRef": "6dde16ba81b0fe4c1d34fdccf1c490249dde8449",
+          "ajustement": "couvrir",
+          "fichier": "group-35-2-photo4"
+        },
+        {
+          "idFigma": "3377:97",
+          "nomFigma": "PANNEAU ORGUE_VF2 1",
+          "x": 669,
+          "y": 9518,
+          "largeur": 952,
+          "hauteur": 762,
+          "imageRef": "4b6710ee66f5dc3ffc6b222ffd881adab12ffb50",
+          "ajustement": "couvrir",
+          "fichier": "group-35-3-panneau-orgue-vf2-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3389:4",
+      "nomFigma": "Group 19",
+      "titre": "Illustration et conception graphique d’étiquettes de Savon",
+      "annee": 2025,
+      "resteLegende": "La chevrerie d’Arbois",
+      "legende": {
+        "x": 155.68,
+        "y": 11965.3,
+        "largeur": 964.35,
+        "hauteur": 130.7,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3364:4",
+          "nomFigma": "mockup 1 1",
+          "x": 617.32,
+          "y": 11445,
+          "largeur": 502.7,
+          "hauteur": 485.11,
+          "imageRef": "bf791d393df1824c72ed186e8751937b93ff1ecb",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -20.04,
+            "t": -49.22,
+            "w": 135.25,
+            "h": 186.87
+          },
+          "fichier": "group-19-1-mockup-1-1"
+        },
+        {
+          "idFigma": "3364:5",
+          "nomFigma": "chevre gravure 4 1",
+          "x": 123,
+          "y": 11445.05,
+          "largeur": 494.37,
+          "hauteur": 509.35,
+          "imageRef": "0788a4591a14851e098171f507a9bf59eea398b3",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -141.51,
+            "t": -58.64,
+            "w": 265.22,
+            "h": 181.99
+          },
+          "fichier": "group-19-2-chevre-gravure-4-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5331:14",
+      "nomFigma": "Group 36",
+      "titre": "Axonométrie et illustrations",
+      "annee": 2025,
+      "resteLegende": "Agence Urban Water",
+      "legende": {
+        "x": 123,
+        "y": 11207,
+        "largeur": 1490,
+        "hauteur": 156,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3389:6",
+          "nomFigma": "060125-Illu- zoom fontaine 1",
+          "x": 800,
+          "y": 10599,
+          "largeur": 847,
+          "hauteur": 547,
+          "imageRef": "dd945a24ccbd7b47fc9957adb4a731d09b254b1f",
+          "ajustement": "couvrir",
+          "fichier": "group-36-1-060125-illu-zoom-fontaine-1"
+        },
+        {
+          "idFigma": "3389:7",
+          "nomFigma": "AXO_FONTAINE_Couleur_ 2",
+          "x": 0,
+          "y": 10410,
+          "largeur": 836,
+          "hauteur": 820,
+          "imageRef": "193c606035911f90dae103e370f6ffc9c83cf502",
+          "ajustement": "couvrir",
+          "fichier": "group-36-2-axo-fontaine-couleur-2"
+        }
+      ]
+    },
+    {
+      "idFigma": "5348:2",
+      "nomFigma": "Group 37",
+      "titre": "Les paysages vues de la fenetre du train",
+      "annee": 2022,
+      "resteLegende": null,
+      "legende": {
+        "x": 1281,
+        "y": 12355,
+        "largeur": 300,
+        "hauteur": 117,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:53",
+          "nomFigma": "Train3",
+          "x": 1253,
+          "y": 11766,
+          "largeur": 317,
+          "hauteur": 581,
+          "imageRef": "20b606f64964872567f732f3bd86614d89f26dd1",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -71.48,
+            "t": -15.92,
+            "w": 247.77,
+            "h": 135.02
+          },
+          "fichier": "group-37-1-train3"
+        }
+      ]
+    },
+    {
+      "idFigma": "5314:14",
+      "nomFigma": "IMG_5876 1",
+      "titre": null,
+      "annee": null,
+      "resteLegende": null,
+      "legendeIncomplete": true,
+      "legende": null,
+      "oeuvres": [
+        {
+          "idFigma": "5314:14",
+          "nomFigma": "IMG_5876 1",
+          "x": 1171,
+          "y": 1588,
+          "largeur": 397,
+          "hauteur": 530,
+          "imageRef": "65984c849f624754f0ec0189f803c4bc642a0077",
+          "ajustement": "couvrir",
+          "fichier": "img-5876-1-1-img-5876-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5319:15",
+      "nomFigma": "Group 30",
+      "titre": "Collaboration VEJA x MILK Magazine autour de deux paires de chaussures pour enfants",
+      "annee": 2025,
+      "resteLegende": "Réalisation des illustrations des planches de coloriages ainsi que le décors du photocall de l’événement et animation de l’atelier colorariage",
+      "legende": {
+        "x": 263,
+        "y": 1187,
+        "largeur": 1115,
+        "hauteur": 193,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "5314:12",
+          "nomFigma": "Capture d’écran 2026-04-07 à 18.12.51 1",
+          "x": 267,
+          "y": 360,
+          "largeur": 301,
+          "hauteur": 400,
+          "imageRef": "3c3cccbd011e89c233ead812b406ee330b83f2b0",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.01,
+            "t": -10.63,
+            "w": 100.03,
+            "h": 122.66
+          },
+          "fichier": "group-30-1-capture-d-ecran-2026-04-07-a-18-12-51-1"
+        },
+        {
+          "idFigma": "5314:10",
+          "nomFigma": "EVENT_MILK-38 1",
+          "x": 568,
+          "y": 360,
+          "largeur": 300,
+          "hauteur": 400,
+          "imageRef": "7ef0951397bfc3f27716a8e97ff2ff9f9c7aba7f",
+          "ajustement": "couvrir",
+          "fichier": "group-30-2-event-milk-38-1"
+        },
+        {
+          "idFigma": "5314:8",
+          "nomFigma": "EVENT_MILK-25 1",
+          "x": 568,
+          "y": 760,
+          "largeur": 300,
+          "hauteur": 401,
+          "imageRef": "10b802a15154c498cf9ee6b9c68559722b3b1ee5",
+          "ajustement": "couvrir",
+          "fichier": "group-30-3-event-milk-25-1"
+        },
+        {
+          "idFigma": "5314:9",
+          "nomFigma": "EVENT_MILK-17 1",
+          "x": 266,
+          "y": 760,
+          "largeur": 301,
+          "hauteur": 401,
+          "imageRef": "2e8eaea5b442a031d0725862d00fd8beb07f4f24",
+          "ajustement": "couvrir",
+          "fichier": "group-30-4-event-milk-17-1"
+        },
+        {
+          "idFigma": "5319:6",
+          "nomFigma": "Planche à colorier 1",
+          "x": 894,
+          "y": 360,
+          "largeur": 483,
+          "hauteur": 801,
+          "imageRef": "a8e91bc70ad8fbdd56eaeed74b600a2f0b20c04a",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -25.34,
+            "t": -5.66,
+            "w": 261,
+            "h": 111.27
+          },
+          "fichier": "group-30-5-planche-a-colorier-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5319:13",
+      "nomFigma": "Group 29",
+      "titre": "“Les toits de Paris”",
+      "annee": 2026,
+      "resteLegende": "Illustration acrylique et crayons de couleurs",
+      "legende": {
+        "x": 62,
+        "y": 2604,
+        "largeur": 721.98,
+        "hauteur": 81.45,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "5314:13",
+          "nomFigma": "94c6b445-5ff3-49c1-9627-910241f8e80e 2 1",
+          "x": 62,
+          "y": 2002,
+          "largeur": 868,
+          "hauteur": 579,
+          "imageRef": "8b0b5f4af486205e523d6b3f73c58972a882f4c3",
+          "ajustement": "couvrir",
+          "fichier": "group-29-1-94c6b445-5ff3-49c1-9627-910241f8e80e-2-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5319:18",
+      "nomFigma": "Group 31",
+      "titre": "Logo illustratif L’Anne-Maraîchère",
+      "annee": 2026,
+      "resteLegende": "Création du logo et de la banderole de marché",
+      "legende": {
+        "x": 379,
+        "y": 1789,
+        "largeur": 678,
+        "hauteur": 81,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "5312:3",
+          "nomFigma": "LOGO Couleurs2 1",
+          "x": 406,
+          "y": 1369,
+          "largeur": 436,
+          "hauteur": 420,
+          "imageRef": "f0c8cd0213f2848599430ae9a4f5f926a93d85a2",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -70.8,
+            "t": -41.21,
+            "w": 243.44,
+            "h": 178.68
+          },
+          "fichier": "group-31-1-logo-couleurs2-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "5331:12",
+      "nomFigma": "Group 34",
+      "titre": "Co-animation d’une fresque collaborative lors d’un Team Building sur le theme du vivre ensemble",
+      "annee": 2024,
+      "resteLegende": "Ambassade de France en Suisse et au Liechtenstein",
+      "legende": {
+        "x": 306,
+        "y": 8249,
+        "largeur": 1115,
+        "hauteur": 116,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "5331:4",
+          "nomFigma": "ambassade5 1",
+          "x": 306,
+          "y": 7475,
+          "largeur": 1136,
+          "hauteur": 757,
+          "imageRef": "24232b6caa3db8059778df205f5b958c98b3e76b",
+          "ajustement": "couvrir",
+          "fichier": "group-34-1-ambassade5-1"
+        },
+        {
+          "idFigma": "5331:5",
+          "nomFigma": "ambassade4 1",
+          "x": 306,
+          "y": 7086,
+          "largeur": 560,
+          "hauteur": 373,
+          "imageRef": "7711889a233fcf957ab7b2c87a663922f29b6b16",
+          "ajustement": "couvrir",
+          "fichier": "group-34-2-ambassade4-1"
+        },
+        {
+          "idFigma": "5331:6",
+          "nomFigma": "ambassade2 1",
+          "x": 882,
+          "y": 7086,
+          "largeur": 560,
+          "hauteur": 373,
+          "imageRef": "f1a5004da18ef680a821b9a5f150ef2f12ddaaa6",
+          "ajustement": "couvrir",
+          "fichier": "group-34-3-ambassade2-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3348:57",
+      "nomFigma": "secours pop",
+      "titre": "Réhabilitation du bâtiment du Secours Populaire (1 min 23)",
+      "annee": 2023,
+      "resteLegende": "Vidéo animée pour Canal Architecture",
+      "legende": {
+        "x": 116,
+        "y": 3952,
+        "largeur": 721.98,
+        "hauteur": 81.45,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3348:56",
+          "nomFigma": "secours pop3 1",
+          "x": 113,
+          "y": 3417,
+          "largeur": 535,
+          "hauteur": 535,
+          "imageRef": "47e656ee3c06567288f395de8b141a0de2a33e16",
+          "radius": 44,
+          "ajustement": "couvrir",
+          "fichier": "secours-pop-1-secours-pop3-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3383:2",
+      "nomFigma": "Dream 9 1",
+      "titre": null,
+      "annee": null,
+      "resteLegende": null,
+      "legendeIncomplete": true,
+      "legende": null,
+      "oeuvres": [
+        {
+          "idFigma": "3383:2",
+          "nomFigma": "Dream 9 1",
+          "x": 1089,
+          "y": 3516,
+          "largeur": 450,
+          "hauteur": 800,
+          "imageRef": "5cf30c3dd7f37e002d50975ac7bdae79da419b95",
+          "radius": 56,
+          "ajustement": "couvrir",
+          "fichier": "dream-9-1-1-dream-9-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:26",
+      "nomFigma": "bretagne",
+      "titre": "Plage bretonne",
+      "annee": 2024,
+      "resteLegende": "Craies grasses",
+      "legende": {
+        "x": 884,
+        "y": 8994,
+        "largeur": 737,
+        "hauteur": 65,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:61",
+          "nomFigma": "08_BRETAGNE 1",
+          "x": 884,
+          "y": 8595,
+          "largeur": 737,
+          "hauteur": 399,
+          "imageRef": "3c3632599af79bba13c5e11f4af07df52888461a",
+          "ajustement": "couvrir",
+          "fichier": "bretagne-1-08-bretagne-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3323:8",
+      "nomFigma": "les tables",
+      "orphelin": true,
+      "slugPropose": "les-tables",
+      "titre": "Les Tables",
+      "annee": null,
+      "resteLegende": null,
+      "legende": {
+        "x": -595,
+        "y": 3686.01,
+        "largeur": 440.81,
+        "hauteur": 73.63,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:26",
+          "nomFigma": "Illu RISO1",
+          "x": -595,
+          "y": 3075,
+          "largeur": 210.36,
+          "hauteur": 297.38,
+          "imageRef": "89b802d1ab4236f16c111ecc78de33eb8cd586b2",
+          "ajustement": "couvrir",
+          "fichier": "les-tables-1-illu-riso1"
+        },
+        {
+          "idFigma": "3321:27",
+          "nomFigma": "Illu RISO2",
+          "x": -369.34,
+          "y": 3075,
+          "largeur": 210.36,
+          "hauteur": 297.38,
+          "imageRef": "fa1a2116d6fd0f5a2e9c9032184e26835f2d5917",
+          "ajustement": "couvrir",
+          "fichier": "les-tables-2-illu-riso2"
+        },
+        {
+          "idFigma": "3321:28",
+          "nomFigma": "Illu RISO4",
+          "x": -595,
+          "y": 3388.63,
+          "largeur": 210.36,
+          "hauteur": 297.38,
+          "imageRef": "5bd374b40c4a257fb8d43e1e2e71270eb1276437",
+          "ajustement": "couvrir",
+          "fichier": "les-tables-3-illu-riso4"
+        },
+        {
+          "idFigma": "3321:29",
+          "nomFigma": "Illu RISO3",
+          "x": -369.34,
+          "y": 3388.63,
+          "largeur": 210.36,
+          "hauteur": 297.38,
+          "imageRef": "a462a95ee6880e0817d416d833f5cc6b8db3552c",
+          "ajustement": "couvrir",
+          "fichier": "les-tables-4-illu-riso3"
+        }
+      ]
+    },
+    {
+      "idFigma": "3321:49",
+      "nomFigma": "SACLAY",
+      "orphelin": true,
+      "slugPropose": "saclay",
+      "titre": "Plateau de Saclay «le Christ» Avant / Après",
+      "annee": 2023,
+      "resteLegende": "Agence Réseaux Paysage et Urbanisme",
+      "legende": {
+        "x": -959.68,
+        "y": 13702.71,
+        "largeur": 643.17,
+        "hauteur": 156.29,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:42",
+          "nomFigma": "04_SACLAY RSX 2",
+          "x": -964,
+          "y": 13012,
+          "largeur": 647.49,
+          "hauteur": 330.59,
+          "imageRef": "cf0e44f42f215c2afbd9e8c8e3eae2eaae996e72",
+          "ajustement": "couvrir",
+          "fichier": "saclay-1-04-saclay-rsx-2"
+        },
+        {
+          "idFigma": "3321:43",
+          "nomFigma": "04_SACLAY RSX",
+          "x": -964,
+          "y": 13354.83,
+          "largeur": 648.21,
+          "hauteur": 330.59,
+          "imageRef": "6ee18ca204d2422fec210d4c543335a08354e693",
+          "ajustement": "couvrir",
+          "fichier": "saclay-2-04-saclay-rsx"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:29",
+      "nomFigma": "Paris",
+      "orphelin": true,
+      "slugPropose": "toits-de-paris-2024",
+      "titre": "Les toits de Paris",
+      "annee": 2024,
+      "resteLegende": "Peinture acrylique, crayons de couleurs",
+      "legende": {
+        "x": -1119,
+        "y": 12743,
+        "largeur": 845,
+        "hauteur": 102,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3346:15",
+          "nomFigma": "PARIS 1",
+          "x": -1116,
+          "y": 12418,
+          "largeur": 204,
+          "hauteur": 311,
+          "imageRef": "c4f316d7859c112e16d0e004ecd8c9a293710551",
+          "ajustement": "recadre",
+          "crop": {
+            "l": 0,
+            "t": -112.86,
+            "w": 222.56,
+            "h": 212.86
+          },
+          "fichier": "paris-1-paris-1"
+        },
+        {
+          "idFigma": "3346:17",
+          "nomFigma": "PARIS 3",
+          "x": -903,
+          "y": 12418,
+          "largeur": 202,
+          "hauteur": 311,
+          "imageRef": "c4f316d7859c112e16d0e004ecd8c9a293710551",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -124.76,
+            "t": -112.86,
+            "w": 224.76,
+            "h": 212.86
+          },
+          "fichier": "paris-1-paris-1"
+        },
+        {
+          "idFigma": "3346:16",
+          "nomFigma": "PARIS 2",
+          "x": -480,
+          "y": 12422,
+          "largeur": 203,
+          "hauteur": 311,
+          "imageRef": "c4f316d7859c112e16d0e004ecd8c9a293710551",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -123.65,
+            "t": 0.31,
+            "w": 223.65,
+            "h": 212.86
+          },
+          "fichier": "paris-1-paris-1"
+        },
+        {
+          "idFigma": "3346:18",
+          "nomFigma": "PARIS 4",
+          "x": -692,
+          "y": 12421,
+          "largeur": 203,
+          "hauteur": 311,
+          "imageRef": "c4f316d7859c112e16d0e004ecd8c9a293710551",
+          "ajustement": "recadre",
+          "crop": {
+            "l": 0,
+            "t": 0.31,
+            "w": 223.65,
+            "h": 212.86
+          },
+          "fichier": "paris-1-paris-1"
+        }
+      ]
+    },
+    {
+      "idFigma": "3346:34",
+      "nomFigma": "italy",
+      "orphelin": true,
+      "slugPropose": "soiree-italienne",
+      "titre": "Affiche pour une soirée italienne",
+      "annee": 2024,
+      "resteLegende": "Illustrations numériques",
+      "legende": {
+        "x": -745,
+        "y": 12225,
+        "largeur": 461,
+        "hauteur": 77,
+        "fs": 20,
+        "lh": 32
+      },
+      "oeuvres": [
+        {
+          "idFigma": "3321:25",
+          "nomFigma": "Pizza montreuil 1",
+          "x": -802,
+          "y": 11705,
+          "largeur": 590,
+          "hauteur": 558,
+          "imageRef": "2abc361967c21dc1df0ad800a0dd329116c06187",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -0.02,
+            "t": -53.23,
+            "w": 100.04,
+            "h": 153.23
+          },
+          "fichier": "italy-1-pizza-montreuil-1"
+        }
+      ]
+    }
+  ],
+  "chrome": {
+    "attente": {
+      "images": [
+        {
+          "idFigma": "3365:9",
+          "nomFigma": "Gif_Page_Principal 2 1",
+          "x": -120,
+          "y": -50,
+          "largeur": 2009,
+          "hauteur": 1130,
+          "imageRef": "e0280a655cdf89916f576a15a485aa776e6862a9",
+          "ajustement": "couvrir",
+          "fichier": "attente-gif-page-principal-2-1"
+        }
+      ],
+      "vecteurs": [
+        {
+          "idFigma": "3318:16",
+          "nomFigma": "Couleur fond",
+          "x": -242.55,
+          "y": -505.29,
+          "largeur": 2218.1,
+          "hauteur": 2108.59
+        },
+        {
+          "idFigma": "3380:143",
+          "nomFigma": "Calque_1",
+          "x": 727,
+          "y": 438,
+          "largeur": 222,
+          "hauteur": 132
+        }
+      ],
+      "textes": []
+    },
+    "contact": {
+      "images": [
+        {
+          "idFigma": "3318:38",
+          "nomFigma": "point 1",
+          "x": 731,
+          "y": 76,
+          "largeur": 78,
+          "hauteur": 54,
+          "imageRef": "ca892dfb84f4ee1b652720fca1f73fa8e9dbee7c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1022.9,
+            "t": -127.17,
+            "w": 1465.65,
+            "h": 1173.91
+          },
+          "fichier": "contact-point-1"
+        },
+        {
+          "idFigma": "3318:39",
+          "nomFigma": "point 2",
+          "x": 982,
+          "y": 76,
+          "largeur": 77,
+          "hauteur": 55,
+          "imageRef": "ca892dfb84f4ee1b652720fca1f73fa8e9dbee7c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1022.9,
+            "t": -127.17,
+            "w": 1465.65,
+            "h": 1173.91
+          },
+          "fichier": "contact-point-1"
+        },
+        {
+          "idFigma": "3318:41",
+          "nomFigma": "portfolio",
+          "x": 818,
+          "y": 63,
+          "largeur": 191,
+          "hauteur": 82,
+          "imageRef": "aaa9934e2eafaa094258da5829bcaf0d8bac4f8e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -385.02,
+            "t": -83.06,
+            "w": 668.99,
+            "h": 870.97
+          },
+          "fichier": "contact-portfolio"
+        },
+        {
+          "idFigma": "3318:42",
+          "nomFigma": "contact 2",
+          "x": 1059,
+          "y": 66,
+          "largeur": 181,
+          "hauteur": 57,
+          "imageRef": "85ea70e47991c489f5dafbad52be993b8484ac00",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -540.56,
+            "t": -124.14,
+            "w": 709.27,
+            "h": 1241.38
+          },
+          "fichier": "contact-contact-2"
+        },
+        {
+          "idFigma": "3318:43",
+          "nomFigma": "à propos 1",
+          "x": 569,
+          "y": 65,
+          "largeur": 181,
+          "hauteur": 58,
+          "imageRef": "a09e4ded77f2f657cfb13d8cb82c29daa5c5341c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -260.14,
+            "t": -121.84,
+            "w": 709.48,
+            "h": 1241.38
+          },
+          "fichier": "contact-a-propos-1"
+        },
+        {
+          "idFigma": "3318:44",
+          "nomFigma": "in insta mail 1",
+          "x": 1463,
+          "y": 52,
+          "largeur": 78,
+          "hauteur": 85,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1561.76,
+            "t": -36.04,
+            "w": 1882.35,
+            "h": 972.97
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3318:45",
+          "nomFigma": "in insta mail 2",
+          "x": 1552,
+          "y": 52,
+          "largeur": 59,
+          "hauteur": 77,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -2173.08,
+            "t": -45.54,
+            "w": 2461.54,
+            "h": 1069.31
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3318:46",
+          "nomFigma": "in insta mail 3",
+          "x": 1611,
+          "y": 62,
+          "largeur": 72,
+          "hauteur": 60,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1850.53,
+            "t": -73.08,
+            "w": 2021.05,
+            "h": 1384.62
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3321:21",
+          "nomFigma": "Flash_Mouette 1",
+          "x": 451,
+          "y": 434,
+          "largeur": 225,
+          "hauteur": 157,
+          "imageRef": "2090139ca0e38302671ce1f99575969db94235e8",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -133.22,
+            "t": -111.05,
+            "w": 243.19,
+            "h": 493.06
+          },
+          "fichier": "contact-flash-mouette-1"
+        },
+        {
+          "idFigma": "3321:22",
+          "nomFigma": "Flash_Mouette 2",
+          "x": 1067,
+          "y": 434,
+          "largeur": 220,
+          "hauteur": 187,
+          "imageRef": "2090139ca0e38302671ce1f99575969db94235e8",
+          "miroir": true,
+          "ajustement": "recadre",
+          "crop": {
+            "l": -164.26,
+            "t": -323.49,
+            "w": 264.26,
+            "h": 440.61
+          },
+          "fichier": "contact-flash-mouette-1"
+        },
+        {
+          "idFigma": "3395:34",
+          "nomFigma": "image 1",
+          "x": 535,
+          "y": 1083,
+          "largeur": 279.1,
+          "hauteur": 266,
+          "imageRef": "b60eea69fd99e8ebfa9387299468646b6f7b593d",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -144.6,
+            "t": -145.62,
+            "w": 366.67,
+            "h": 544.21
+          },
+          "fichier": "contact-image-1"
+        }
+      ],
+      "vecteurs": [
+        {
+          "idFigma": "5332:18",
+          "nomFigma": "Vector 10",
+          "x": 1061.84,
+          "y": 74,
+          "largeur": 153.16,
+          "hauteur": 58.5
+        },
+        {
+          "idFigma": "5332:67",
+          "nomFigma": "Vector 15",
+          "x": -316,
+          "y": 76.5,
+          "largeur": 32.96,
+          "hauteur": 29.96
+        },
+        {
+          "idFigma": "3394:11",
+          "nomFigma": "Vector 2",
+          "x": 176.5,
+          "y": 632,
+          "largeur": 1389.75,
+          "hauteur": 410.38
+        },
+        {
+          "idFigma": "3379:98",
+          "nomFigma": "Calque_5",
+          "x": 515,
+          "y": 249,
+          "largeur": 688,
+          "hauteur": 55
+        },
+        {
+          "idFigma": "3380:163",
+          "nomFigma": "Calque_1",
+          "x": 45,
+          "y": 44,
+          "largeur": 233,
+          "hauteur": 138
+        },
+        {
+          "idFigma": "3395:37",
+          "nomFigma": "Vector 8",
+          "x": 797,
+          "y": 1241.29,
+          "largeur": 406,
+          "hauteur": 76.39
+        }
+      ],
+      "textes": [
+        {
+          "idFigma": "3321:8",
+          "texte": "N’hésitez pas à me contacter pour collaborer sur un projet ensemble !\n",
+          "x": 630,
+          "y": 393,
+          "largeur": 457,
+          "hauteur": 87,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 400
+        },
+        {
+          "idFigma": "3321:13",
+          "texte": "mariepocheron@gmail.com\n06 03 28 82 36\n",
+          "x": 658,
+          "y": 495,
+          "largeur": 421,
+          "hauteur": 112,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 700
+        },
+        {
+          "idFigma": "3321:16",
+          "texte": "Formulaire de contact",
+          "x": 199,
+          "y": 662,
+          "largeur": 1333,
+          "hauteur": 39,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 700
+        },
+        {
+          "idFigma": "3321:17",
+          "texte": "Nom : ",
+          "x": 238,
+          "y": 744,
+          "largeur": 463,
+          "hauteur": 39,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 700
+        },
+        {
+          "idFigma": "3321:18",
+          "texte": "Email :",
+          "x": 238,
+          "y": 794,
+          "largeur": 463,
+          "hauteur": 39,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 700
+        },
+        {
+          "idFigma": "3395:28",
+          "texte": "Le message a été envoyé ",
+          "x": 891,
+          "y": 1260,
+          "largeur": 312,
+          "hauteur": 39,
+          "fs": 20,
+          "lh": 32,
+          "graisse": 700
+        }
+      ]
+    },
+    "apropos": {
+      "images": [
+        {
+          "idFigma": "3318:52",
+          "nomFigma": "point 1",
+          "x": 731,
+          "y": 76,
+          "largeur": 78,
+          "hauteur": 54,
+          "imageRef": "ca892dfb84f4ee1b652720fca1f73fa8e9dbee7c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1022.9,
+            "t": -127.17,
+            "w": 1465.65,
+            "h": 1173.91
+          },
+          "fichier": "contact-point-1"
+        },
+        {
+          "idFigma": "3318:53",
+          "nomFigma": "point 2",
+          "x": 982,
+          "y": 76,
+          "largeur": 77,
+          "hauteur": 55,
+          "imageRef": "ca892dfb84f4ee1b652720fca1f73fa8e9dbee7c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1022.9,
+            "t": -127.17,
+            "w": 1465.65,
+            "h": 1173.91
+          },
+          "fichier": "contact-point-1"
+        },
+        {
+          "idFigma": "3318:55",
+          "nomFigma": "portfolio",
+          "x": 818,
+          "y": 63,
+          "largeur": 191,
+          "hauteur": 82,
+          "imageRef": "aaa9934e2eafaa094258da5829bcaf0d8bac4f8e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -385.02,
+            "t": -83.06,
+            "w": 668.99,
+            "h": 870.97
+          },
+          "fichier": "contact-portfolio"
+        },
+        {
+          "idFigma": "3318:56",
+          "nomFigma": "contact 2",
+          "x": 1059,
+          "y": 66,
+          "largeur": 181,
+          "hauteur": 57,
+          "imageRef": "85ea70e47991c489f5dafbad52be993b8484ac00",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -540.56,
+            "t": -124.14,
+            "w": 709.27,
+            "h": 1241.38
+          },
+          "fichier": "contact-contact-2"
+        },
+        {
+          "idFigma": "3318:57",
+          "nomFigma": "à propos 1",
+          "x": 569,
+          "y": 65,
+          "largeur": 181,
+          "hauteur": 58,
+          "imageRef": "a09e4ded77f2f657cfb13d8cb82c29daa5c5341c",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -260.14,
+            "t": -121.84,
+            "w": 709.48,
+            "h": 1241.38
+          },
+          "fichier": "contact-a-propos-1"
+        },
+        {
+          "idFigma": "3318:58",
+          "nomFigma": "in insta mail 1",
+          "x": 1463,
+          "y": 52,
+          "largeur": 78,
+          "hauteur": 85,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1561.76,
+            "t": -36.04,
+            "w": 1882.35,
+            "h": 972.97
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3318:59",
+          "nomFigma": "in insta mail 2",
+          "x": 1552,
+          "y": 52,
+          "largeur": 59,
+          "hauteur": 77,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -2173.08,
+            "t": -45.54,
+            "w": 2461.54,
+            "h": 1069.31
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3318:60",
+          "nomFigma": "in insta mail 3",
+          "x": 1611,
+          "y": 62,
+          "largeur": 72,
+          "hauteur": 60,
+          "imageRef": "5eea4f1a9a38e532e8c46a287afc14a61740787e",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -1850.53,
+            "t": -73.08,
+            "w": 2021.05,
+            "h": 1384.62
+          },
+          "fichier": "contact-in-insta-mail-1"
+        },
+        {
+          "idFigma": "3328:5",
+          "nomFigma": "présentation 1",
+          "x": 494,
+          "y": 1866,
+          "largeur": 316,
+          "hauteur": 73,
+          "imageRef": "732e8c9fbb819d9cdf7332bac929acd083459f51",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -188.97,
+            "t": -513.33,
+            "w": 492.31,
+            "h": 1200
+          },
+          "fichier": "presentation-2-1-presentation-2"
+        },
+        {
+          "idFigma": "3328:6",
+          "nomFigma": "présentation 2",
+          "x": 696,
+          "y": 430,
+          "largeur": 391,
+          "hauteur": 62,
+          "imageRef": "732e8c9fbb819d9cdf7332bac929acd083459f51",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -189.77,
+            "t": -892.71,
+            "w": 491.05,
+            "h": 1125
+          },
+          "fichier": "presentation-2-1-presentation-2"
+        },
+        {
+          "idFigma": "5355:104",
+          "nomFigma": "présentation 3",
+          "x": 696,
+          "y": 1754,
+          "largeur": 391,
+          "hauteur": 62,
+          "imageRef": "732e8c9fbb819d9cdf7332bac929acd083459f51",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -189.77,
+            "t": -892.71,
+            "w": 491.05,
+            "h": 1125
+          },
+          "fichier": "presentation-2-1-presentation-2"
+        },
+        {
+          "idFigma": "3318:64",
+          "nomFigma": "Mon parcours 1",
+          "x": 1103,
+          "y": 1866,
+          "largeur": 334,
+          "hauteur": 79,
+          "imageRef": "65af9bd7ffc3159c79463d683bafb9d470144719",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -27.43,
+            "t": -359.18,
+            "w": 466.02,
+            "h": 1102.04
+          },
+          "fichier": "apropos-mon-parcours-1"
+        },
+        {
+          "idFigma": "3377:85",
+          "nomFigma": "Layer 0",
+          "x": 769,
+          "y": 585,
+          "largeur": 274.45,
+          "hauteur": 172.15,
+          "imageRef": "54164606c930550e0f8cd3919d59ad4e6da40f16",
+          "ajustement": "couvrir",
+          "fichier": "apropos-layer-0"
+        },
+        {
+          "idFigma": "3318:62",
+          "nomFigma": "phto profil 1",
+          "x": 186,
+          "y": 1985,
+          "largeur": 278,
+          "hauteur": 321,
+          "imageRef": "5d8c6dc655857464a82c609d9a025bdc53a0f23f",
+          "radius": 37,
+          "ajustement": "couvrir",
+          "fichier": "apropos-phto-profil-1"
+        },
+        {
+          "idFigma": "5355:3",
+          "nomFigma": "image 2",
+          "x": 953,
+          "y": 1384,
+          "largeur": 359,
+          "hauteur": 132,
+          "imageRef": "ce2de2cc3c366451f358474263aac40666147bbd",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -20.33,
+            "t": -251.52,
+            "w": 298.61,
+            "h": 456.82
+          },
+          "fichier": "apropos-image-2"
+        },
+        {
+          "idFigma": "5355:6",
+          "nomFigma": "image 3",
+          "x": 514,
+          "y": 1029,
+          "largeur": 193,
+          "hauteur": 118,
+          "imageRef": "25f6123d248d75d8f01b64d3dc6a980b96b92a5d",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -352.45,
+            "t": -130.51,
+            "w": 553.6,
+            "h": 509.32
+          },
+          "fichier": "apropos-image-3"
+        },
+        {
+          "idFigma": "5355:9",
+          "nomFigma": "image 4",
+          "x": 989,
+          "y": 1007,
+          "largeur": 273,
+          "hauteur": 124,
+          "imageRef": "d3d30a6ea4d4e8fd7ae5d7d7a00bdb4b638ad8cb",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -140.29,
+            "t": -132.28,
+            "w": 413.55,
+            "h": 512.15
+          },
+          "fichier": "apropos-image-4"
+        },
+        {
+          "idFigma": "5355:12",
+          "nomFigma": "image 5",
+          "x": 499,
+          "y": 1406,
+          "largeur": 257,
+          "hauteur": 114,
+          "imageRef": "948e22c416affb98543c206bb23279d3ad84b087",
+          "ajustement": "recadre",
+          "crop": {
+            "l": -20.62,
+            "t": -135.12,
+            "w": 414.4,
+            "h": 525.49
+          },
+          "fichier": "apropos-image-5"
+        }
+      ],
+      "vecteurs": [
+        {
+          "idFigma": "5332:19",
+          "nomFigma": "Vector 11",
+          "x": 592,
+          "y": 69,
+          "largeur": 156,
+          "hauteur": 71
+        },
+        {
+          "idFigma": "3377:46",
+          "nomFigma": "Calque_2",
+          "x": 1111,
+          "y": 784,
+          "largeur": 161.17,
+          "hauteur": 191.39
+        },
+        {
+          "idFigma": "3377:66",
+          "nomFigma": "Calque_2",
+          "x": 728,
+          "y": 805,
+          "largeur": 340,
+          "hauteur": 62
+        },
+        {
+          "idFigma": "3377:87",
+          "nomFigma": "Calque_4",
+          "x": 759,
+          "y": 564,
+          "largeur": 284.99,
+          "hauteur": 202.49
+        },
+        {
+          "idFigma": "3380:183",
+          "nomFigma": "Calque_1",
+          "x": 57,
+          "y": 47,
+          "largeur": 233,
+          "hauteur": 138
+        },
+        {
+          "idFigma": "3395:2",
+          "nomFigma": "Vector 3",
+          "x": 424,
+          "y": 1012,
+          "largeur": 373,
+          "hauteur": 270
+        },
+        {
+          "idFigma": "3395:3",
+          "nomFigma": "Vector 4",
+          "x": 917,
+          "y": 993,
+          "largeur": 393,
+          "hauteur": 276
+        },
+        {
+          "idFigma": "5355:18",
+          "nomFigma": "Vector 6",
+          "x": 430,
+          "y": 1378,
+          "largeur": 394.72,
+          "hauteur": 276
+        },
+        {
+          "idFigma": "3395:4",
+          "nomFigma": "Vector 5",
+          "x": 921,
+          "y": 1362,
+          "largeur": 424,
+          "hauteur": 291
+        }
+      ],
+      "textes": [
+        {
+          "idFigma": "3326:2",
+          "texte": "Le Studio Poche crée des illustrations et animations dessinées à la main pour raconter le vivant, les savoirs-faire et les projets qui ont du sens.",
+          "x": 333,
+          "y": 260,
+          "largeur": 1104,
+          "hauteur": 167,
+          "fs": 32,
+          "lh": 41,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5354:4",
+          "texte": "Je suis Marie Pocheron, illustratrice indépendante et fondatrice du Studio Poche.\nÀ travers le dessin et l’animation, j’aide associations, structures culturelles, artisants et projets engagés à raconter leurs histoires et à transmettre leurs idées.\nMon travail est entièrement dessiné à la main. J’aime créer des images sensibles qui rendent accessibles des sujets parfois complexes, qu’il s’agisse de biodiversité, de patrimoine, de savoir-faire ou de projets de territoire.",
+          "x": 522,
+          "y": 1980,
+          "largeur": 370,
+          "hauteur": 402,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5354:5",
+          "texte": "Formée au design d’espace et à l’illustration, j’ai développé au fil des années un regard attentif aux paysages, aux lieux et à ceux qui les habitent.\n\nAprès plusieurs expériences dans les domaines du paysage et de l’architecture, j’ai choisi de me consacrer pleinement à l’illustration. Aujourd’hui, je mets cette sensibilité au service de projets qui ont du sens pour moi : la transmission, le vivant, la culture et les savoir-faire.\nJ’aime particulièrement travailler avec des structures à taille humaine et construire avec elles des images uniques, adaptées à leur univers.",
+          "x": 1011,
+          "y": 1986,
+          "largeur": 555,
+          "hauteur": 437,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5354:9",
+          "texte": "Livrets, panneaux, expositions ou outils de sensibilisation autour du vivant, du patrimoine et de la culture.",
+          "x": 966,
+          "y": 1134,
+          "largeur": 309,
+          "hauteur": 116,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5355:14",
+          "texte": "Étiquettes, affiches, supports de communication et identités visuelles dessinées à la main.",
+          "x": 471,
+          "y": 1152,
+          "largeur": 300,
+          "hauteur": 160,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5355:16",
+          "texte": "Des animations image par image pour expliquer, raconter ou faire vivre un projet.",
+          "x": 980,
+          "y": 1501,
+          "largeur": 349,
+          "hauteur": 152,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        },
+        {
+          "idFigma": "5355:19",
+          "texte": "Pour accompagner un article, raconter une histoire ou donner vie à une idée.",
+          "x": 487,
+          "y": 1531,
+          "largeur": 296,
+          "hauteur": 154,
+          "fs": 20,
+          "lh": 22,
+          "graisse": 400
+        }
+      ]
+    }
+  },
+  "svg": {},
+  "echecsTelechargement": []
+}

@@ -1,8 +1,14 @@
 "use client";
 
 import { useCallback, useRef } from "react";
+import { preload } from "react-dom";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Oeuvre } from "@/components/oeuvre/Oeuvre";
+import { PREMIERS_CHARGES } from "@/components/collage/CollageDesktop";
+import { PROJETS } from "@/content/projets";
+import { asset, srcset } from "@/lib/assets";
+import { tailles } from "@/lib/echelle";
 import { LettrageStudioPoche } from "@/components/chrome/LettrageStudioPoche";
 import { image, vecteur, hauteur } from "@/lib/chrome";
 import { pose } from "@/lib/echelle";
@@ -22,9 +28,41 @@ import { useEntreeAttente } from "@/lib/motion/useEntreeAttente";
  * son fichier source (GIF, vidéo ou calques), c'est `useEntreeAttente` qu'il
  * faudra reprendre.
  */
+/**
+ * Précharge les Œuvres du premier écran de /portfolio — celles que le Collage
+ * charge en `eager`, d'où le partage de `PREMIERS_CHARGES` : la règle de
+ * préchargement doit rester celle du chargement.
+ *
+ * L'attente dure plusieurs secondes et débouche TOUJOURS sur /portfolio (clic,
+ * touche, ou fin de la timeline) : c'est du temps mort garanti, pendant lequel
+ * ces images se chargent en priorité basse pour ne pas concurrencer
+ * l'illustration de l'attente elle-même.
+ *
+ * AVIF seulement : un navigateur sans AVIF ignore le preload (attribut `type`)
+ * et chargera le WebP à l'arrivée, comme avant — mais aucun ne télécharge deux
+ * formats.
+ */
+function prechargerPremierEcran() {
+  for (const projet of PROJETS.slice(0, PREMIERS_CHARGES)) {
+    for (const o of projet.oeuvres) {
+      const entree = asset("oeuvres", o.fichier);
+      const avif = entree && srcset(entree.variantes, "avif");
+      if (!entree || !avif) continue;
+      preload(entree.variantes.find((v) => v.format === "avif")!.fichier, {
+        as: "image",
+        type: "image/avif",
+        imageSrcSet: avif,
+        imageSizes: tailles(o.largeur),
+        fetchPriority: "low",
+      });
+    }
+  }
+}
+
 export function PageAttente() {
   const scene = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  prechargerPremierEcran();
 
   // `replace` et non `push` : sinon le retour arrière depuis /portfolio ramène
   // ici, qui rejoue l'attente puis redirige, et le visiteur est piégé.
@@ -66,7 +104,9 @@ export function PageAttente() {
           `href` reste renseigné pour que le lien vive sans JavaScript ; le clic
           est intercepté pour passer par le routeur plutôt que par un
           rechargement complet. */}
-      <a
+      {/* `Link` et non `<a>` : son prefetch charge la route /portfolio pendant
+          l'attente — avec un `<a>` brut, tout partait au moment du clic. */}
+      <Link
         href="/portfolio"
         aria-label="Entrer dans le portfolio"
         className="maquette-pose"
@@ -77,7 +117,7 @@ export function PageAttente() {
         }}
       >
         <LettrageStudioPoche />
-      </a>
+      </Link>
     </div>
   );
 }
