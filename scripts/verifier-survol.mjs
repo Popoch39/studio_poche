@@ -100,12 +100,18 @@ const rapport = [];
 await amener(ART, 300);
 const ancre = await page.$(`${ART} [data-survol-propre]`);
 const boite = await ancre.boundingBox();
+/* Ce qu'on surveille : `--deroule`, la progression que GSAP écrit en inline,
+   ET `mask-position`, sa conséquence visible. Les deux, parce qu'une variable
+   qui bouge sans que le masque ne suive (une faute de calc, une couche
+   oubliée) ne se verrait pas plus qu'un tween qui n'interpole pas. */
 const suivi = page.evaluate((sel) => new Promise((fin) => {
   const el = document.querySelector(sel);
   const t0 = performance.now(); const vues = [];
   const tick = () => {
+    const cs = getComputedStyle(el);
     vues.push({ ms: Math.round(performance.now() - t0),
-                inline: el.style.clipPath, calcule: getComputedStyle(el).clipPath,
+                inline: el.style.getPropertyValue("--deroule"),
+                calcule: cs.maskPosition || cs.webkitMaskPosition,
                 opacity: el.style.opacity });
     if (performance.now() - t0 > 1500) return fin(vues);
     requestAnimationFrame(tick);
@@ -118,7 +124,7 @@ const vues = await suivi;
 
 const distincts = (l, cle) => [...new Set(l.map((v) => v[cle]))];
 rapport.push({
-  geste: "banderole/clip-path",
+  geste: "banderole/front-d-encre",
   images: vues.length,
   inlineDistincts: distincts(vues, "inline").length,
   calculeDistincts: distincts(vues, "calcule").length,
@@ -152,7 +158,13 @@ rapport.push({
 for (const r of rapport) console.log(JSON.stringify(r));
 console.log(erreurs.length ? "ERREURS:\n" + erreurs.join("\n") : "aucune erreur console/JS");
 
-const casse = rapport.filter((r) => (r.inlineDistincts ?? r.valeursDistinctes) < 5);
+/* Le masque calculé compte autant que la variable inline : une progression qui
+   bouge sans déplacer la bande n'anime rien à l'écran. */
+const casse = rapport.filter(
+  (r) =>
+    (r.inlineDistincts ?? r.valeursDistinctes) < 5 ||
+    (r.calculeDistincts !== undefined && r.calculeDistincts < 5),
+);
 console.log(
   casse.length
     ? `\nROUGE — sans animation : ${casse.map((c) => c.geste).join(", ")}`

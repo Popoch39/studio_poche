@@ -58,10 +58,13 @@ _Avoid_: caption, description, crédit
 
 **Banderole** :
 Un visuel complet d'un Projet (le même cercle qu'une Œuvre ancre, prolongé de son
-paysage et de ses textes) qui se **déroule** au survol de cette Œuvre, par-dessus les
-voisins, et se ré-enroule à la sortie. Elle n'existe qu'à ce moment-là : au repos — et
-sous `prefers-reduced-motion`, au tactile, sous 1280px — le rendu est exactement la
-maquette. Une seule aujourd'hui : celle de « logo-anne-maraichere ».
+paysage et de ses textes) qui se **dépose** au survol de cette Œuvre, par-dessus les
+voisins, et se retire à la sortie. Elle se révèle au **front d'encre**, comme toutes
+les Œuvres du Collage : son rond ne cesse jamais d'être un rond — c'est le paysage qui
+vient à lui, déposé vers la droite par la bande déchirée. Elle n'existe qu'à ce
+moment-là : au repos — et sous `prefers-reduced-motion`, au tactile, sous 1280px — le
+rendu est exactement la maquette. Une seule aujourd'hui : celle de
+« logo-anne-maraichere ».
 _Avoid_: bannière, bandeau, cover
 
 **Page d'attente** :
